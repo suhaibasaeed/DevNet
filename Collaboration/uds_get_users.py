@@ -6,7 +6,7 @@ import json
 
 # Suppress insecure warning
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-#### For use with the DevNet Sandbox CUCM 11.5 #####
+#### For use with the DevNet Sandbox Collaboration 11.5 #####
 # URL of the server
 url = 'https://10.10.20.1/cucm-uds/users'
 #
