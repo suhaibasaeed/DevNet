@@ -4,7 +4,7 @@ FROM ubuntu:20.04
 LABEL maintainer="saeed.suhaib@googlemail.com"
 
 # Update the container with latest repo. -y means say yes to prompts. Then install python 3 pip and dev environments
-RUN apt-get update -y && apy-get install -y python3-pip python3-dev
+RUN apt-get update -y && apt-get install -y python3-pip python3-dev
 
 # Run this raw command - Done as app runs on port 5000 so open this port in container
 CMD ["ufw allow 5000"]
