@@ -1,0 +1,13 @@
+---
+# Declare the first play - We're writing variables to file on remote host
+- name: variables demo
+  # Which hosts do we want it to connect to
+  hosts: centoshosts
+  # Declare variables
+  vars:
+    - var1: Suhaib
+    - var2: Saeed
+  # Tasks we want to run against hosts
+  tasks:
+    - name: Print data
+      shell: echo "My name is {{var1}} - {{var2}}" > /root/files/name.txt
