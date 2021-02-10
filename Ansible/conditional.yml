@@ -1,0 +1,19 @@
+---
+- hosts: linuxhosts
+# Become root user as we're installing things
+  become: true
+  tasks:
+    - name: install nginx on ubuntu
+      # Use apt module to install latest nginx version
+      apt: name=nginx state=latest
+      # This will generate an error on CentOS - Below prevents Ansible from stopping and rolling back
+      ignore_errors: yes
+      # When it fails, want to store the failure in a variable
+      # for next task to run in case of failure
+      register: results
+
+      # Use yum to install nginx when the result above failed - when it wasn't ubuntu
+    - name: install nginx on centos
+      yum: name=nginx state=latest
+      # Conditional - But in opposite way to how it usually is
+      when: results is failed
