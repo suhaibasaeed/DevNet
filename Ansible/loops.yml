@@ -1,0 +1,15 @@
+---
+- name: Demo Ansible loops
+  hosts: ubuntu2
+  become: yes
+  tasks:
+    - name: Create a file
+      shell: echo 'Begin file' > /root/Desktop/loops.txt
+    - name: install packages
+      # Append each item to the file one by one
+      shell: echo "{{item}}" >> /root/Desktop/loops.txt
+      # The list we're looping through
+      with_items:
+        - vim
+        - nano
+        - python
