@@ -1,0 +1,13 @@
+---
+# Declare the first play - Get stats from Linux host and will write it to txt file on remote host
+- name: Get stats and write to desktop
+  # Which hosts do we want it to connect to
+  hosts: centoshosts
+  # Tasks we want to run against hosts
+  tasks:
+    - name: Get system status
+      # Specify module we want to run as well as command
+      shell: uname -a > /root/files/output.txt
+    # 2nd task - append username to the file created above
+    - name: print username
+      shell: whoami >> /root/files/output.txt
