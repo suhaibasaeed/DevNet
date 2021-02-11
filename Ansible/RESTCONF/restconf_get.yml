@@ -1,0 +1,19 @@
+---
+# Name of play
+- name: Create loopback payload from template
+  hosts: iosxe
+  connection: local
+  tasks:
+    - name: Get some configs
+      # Module used to make GET request
+      restconf_get:
+        # We want running config
+        content: config
+        output: json
+        # Endpoint we're hitting - base URL comes from host_vars
+        path: /data/ietf-interfaces:interfaces
+      # Put output in below variable
+      register: dataout
+
+    - name: print output
+      debug: msg="{{dataout}}"

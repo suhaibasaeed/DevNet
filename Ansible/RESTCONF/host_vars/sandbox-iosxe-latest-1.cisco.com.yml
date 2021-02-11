@@ -1,0 +1,28 @@
+---
+ansible_connection: "httpapi"
+ansible_network_os: "restconf"
+ansible_httpapi_use_ssl: true
+ansible_httpapi_port: 443
+# Ignore self-signed cert
+ansible_httpapi_validate_certs: false
+# This will be appended to hostname - but endpoint comes from task
+ansible_httpapi_restconf_root: "/restconf"
+ansible_user: "developer"
+ansible_password: "C1sco12345"
+
+# Objects which will be imported into the playbook
+local_loopback:
+  - name: "Loopback102"
+    desc: "Created by SAS using Ansible"
+    ip_address: 10.99.99.1
+    prefix: 255.255.255.0
+
+new_loop:
+  interface:
+    - name: "Loopback102"
+      type: "iana-if-type:softwareLoopback"
+      enabled: true
+      ietf-ip:ipv4:
+        address:
+          - ip: 10.99.99.1
+            prefix: 255.255.255.0
