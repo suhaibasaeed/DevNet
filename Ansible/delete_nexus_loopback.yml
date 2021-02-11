@@ -1,0 +1,12 @@
+---
+- name: Delete Loopbacks on device
+  hosts: switches
+  connection: local
+  tasks:
+    - name: Delete loopback shell
+      # Import from the host_vars folder and loop through sub-objects
+      with_items: "{{local_loopback}}"
+      nxos_interface:
+        interface: "{{item.name}}"
+        # Make sure loopbacks aren't there
+        state: absent

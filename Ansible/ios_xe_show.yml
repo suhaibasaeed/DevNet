@@ -1,0 +1,22 @@
+---
+- name: Issue show commands
+  hosts: iosxe
+  connection: local
+  tasks:
+    - name: Show ip int brief
+      ios_command:
+        commands:
+          - show ip int brief
+        provider:
+          host: ios-xe-mgmt.cisco.com
+          port: 8181
+          authorize: yes
+          username: developer
+          password: C1sco12345
+      # Put output in this variable
+      register: if_data
+
+    - name: Interfaces output
+      debug:
+        # Use python syntax to parse the output we want
+        var: if_data['stdout_lines'][0]

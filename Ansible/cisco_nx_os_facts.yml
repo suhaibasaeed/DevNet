@@ -1,0 +1,20 @@
+---
+# Name of the play
+- name: 9k facts
+  hosts: 172.16.1.68
+  connection: local
+  tasks:
+    - name: Get Nexus9k facts
+      nxos_facts:
+        # Execute against local host
+        host: "{{inventory_hostname}}"
+        # Use NX-API to connect to the device
+        transport: nxapi
+        use_ssl: yes
+        # don't check ssl cert
+        validate_certs: no
+      # Put output into variable called nxos_data
+      register: nxos_data
+
+    - name: Print name to console
+      debug: msg="{{nxos_data}}"
