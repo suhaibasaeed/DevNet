@@ -1,0 +1,12 @@
+---
+# Play creates the JSON body which will be sent in POST request to device
+- name: Create loopback payload from template
+  hosts: iosxe
+  connection: local
+
+  tasks:
+    - name: Create template
+      # Loop through this object imported from the host_vars - Stored as item which is why it's referenced in j2 file
+      with_items: "{{local_loopback}}"
+      # Using template module render the template and output json to local directory
+      template: src="./ietf_int.j2" dest="./output.json"

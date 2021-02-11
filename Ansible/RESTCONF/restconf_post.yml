@@ -1,0 +1,37 @@
+---
+- name: Create loopback payload from template and POST to device
+  hosts: iosxe
+  connection: local
+
+  tasks:
+    - name: Render template
+      # Loop through this object imported from the host_vars - Stored as item which is why it's referenced in j2 file
+      with_items: "{{local_loopback}}"
+      # Using template module render the template and output json to local directory
+      template: src="./ietf_int.j2" dest="./output.json"
+
+    - name: Create loopbacks with RESTCONF
+      # Loop through the loopback we're creating
+      with_items: "{{local_loopback}}"
+      # Use this restconf module
+      restconf_config:
+        method: post
+        format: json
+        # URL we're hitting - The rest is in host_vars
+        path: /data/ietf-interfaces:interfaces
+
+        # Lookup file in current directory and turn it into a string. Essentially eqiv of dumps in python
+        content: "{{ lookup('file','./output.json') | string }}"
+      # Put output into the below variable
+      register: results
+      ignore_errors: true
+
+    - name: print output
+      debug: msg="{{results}}"
+
+    - name: Delete interface
+      with_items: "{{local_loopback}}"
+      restconf_config:
+        method: delete
+        format: json
+        path: "/data/ietf-interfaces:interfaces/interface={{item.name}}"
