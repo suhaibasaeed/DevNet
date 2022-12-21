@@ -1,2 +1,2 @@
 # DevNet
-Scripts created for the Cisco DevNet Associate exam
+Scripts created for the Cisco DevNet Associate/Professional exams
