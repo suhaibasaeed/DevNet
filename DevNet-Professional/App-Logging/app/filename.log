@@ -7,3 +7,168 @@
 2023-01-21 15:40:08,491 INFO werkzeug MainThread : [33mPress CTRL+C to quit[0m
 2023-01-21 15:41:06,374 INFO werkzeug Thread-1 : 127.0.0.1 - - [21/Jan/2023 15:41:06] "GET / HTTP/1.1" 200 -
 2023-01-21 15:41:06,437 INFO werkzeug Thread-2 : 127.0.0.1 - - [21/Jan/2023 15:41:06] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2023-01-21 16:10:51,239 INFO myApi MainThread : script directory: C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\App-Logging\app
+2023-01-21 16:10:51,239 INFO myApi MainThread : DB file: C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\App-Logging\app\db.txt
+2023-01-21 16:10:51,246 INFO werkzeug MainThread : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.107:5000
+2023-01-21 16:10:51,246 INFO werkzeug MainThread : [33mPress CTRL+C to quit[0m
+2023-01-21 16:11:05,275 INFO werkzeug Thread-1 : 127.0.0.1 - - [21/Jan/2023 16:11:05] "GET / HTTP/1.1" 200 -
+2023-01-21 16:11:20,531 WARNING myApi Thread-2 : No hostname specified
+2023-01-21 16:11:20,532 ERROR myApi Thread-2 : NO HOSTNAME SPECIFIED
+2023-01-21 16:11:20,533 INFO werkzeug Thread-2 : 127.0.0.1 - - [21/Jan/2023 16:11:20] "[31m[1mGET /routers HTTP/1.1[0m" 400 -
+2023-01-21 16:13:05,466 WARNING myApi Thread-4 : No hostname specified
+2023-01-21 16:13:05,466 ERROR myApi Thread-4 : NO HOSTNAME SPECIFIED
+2023-01-21 16:13:05,468 INFO werkzeug Thread-4 : 127.0.0.1 - - [21/Jan/2023 16:13:05] "[31m[1mGET /routers?hostname= HTTP/1.1[0m" 400 -
+2023-01-21 16:15:04,257 WARNING myApi Thread-6 : No matching router
+2023-01-21 16:15:04,258 INFO werkzeug Thread-6 : 127.0.0.1 - - [21/Jan/2023 16:15:04] "GET /routers?hostname=R1 HTTP/1.1" 200 -
+2023-01-21 16:15:52,323 WARNING myApi Thread-8 : No matching router
+2023-01-21 16:15:52,324 INFO werkzeug Thread-8 : 127.0.0.1 - - [21/Jan/2023 16:15:52] "GET /routers?hostname=R1 HTTP/1.1" 200 -
+2023-01-21 16:17:24,943 WARNING myApi Thread-9 : No matching router
+2023-01-21 16:17:24,944 INFO werkzeug Thread-9 : 127.0.0.1 - - [21/Jan/2023 16:17:24] "GET /routers?hostname=S1 HTTP/1.1" 200 -
+2023-01-21 16:17:29,017 WARNING myApi Thread-10 : No matching router
+2023-01-21 16:17:29,017 INFO werkzeug Thread-10 : 127.0.0.1 - - [21/Jan/2023 16:17:29] "GET /routers?hostname=S1 HTTP/1.1" 200 -
+2023-01-21 16:17:58,548 INFO myApi Thread-11 : Routers returned
+2023-01-21 16:17:58,549 INFO werkzeug Thread-11 : 127.0.0.1 - - [21/Jan/2023 16:17:58] "GET /routers?hostname=SW1 HTTP/1.1" 200 -
+2023-01-21 18:15:14,654 INFO myApi MainThread : script directory: C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\App-Logging\app
+2023-01-21 18:15:14,654 INFO myApi MainThread : DB file: C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\App-Logging\app\db.txt
+2023-01-21 18:15:14,662 INFO werkzeug MainThread : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.107:5000
+2023-01-21 18:15:14,662 INFO werkzeug MainThread : [33mPress CTRL+C to quit[0m
+2023-01-21 18:19:19,636 INFO myApi Thread-1 : inbound record {'hostname': 'R1', 'ipaddr': '10.1.1.1'}
+2023-01-21 18:19:19,637 INFO myApi Thread-1 : records output [{'hostname': 'SW1', 'ipaddr': '10.12.12.1'}, {'hostname': 'R1', 'ipaddr': '10.1.1.1'}]
+2023-01-21 18:19:19,637 WARNING myApi Thread-1 : router added R1
+2023-01-21 18:19:19,638 INFO werkzeug Thread-1 : 127.0.0.1 - - [21/Jan/2023 18:19:19] "[35m[1mPOST /routers HTTP/1.1[0m" 201 -
+2023-01-21 18:22:24,312 INFO myApi Thread-2 : inbound record {'hostname': 'R1', 'ipaddr': '10.1.1.1'}
+2023-01-21 18:22:24,313 INFO werkzeug Thread-2 : 127.0.0.1 - - [21/Jan/2023 18:22:24] "POST /routers HTTP/1.1" 200 -
+2023-01-21 18:26:03,900 INFO myApi Thread-3 : inbound record {'hotname': 'R1', 'ipaddr': '10.1.1.1'}
+2023-01-21 18:26:03,901 INFO myApi Thread-3 : records output [{'hostname': 'SW1', 'ipaddr': '10.12.12.1'}, {'hostname': 'R1', 'ipaddr': '10.1.1.1'}, {'hotname': 'R1', 'ipaddr': '10.1.1.1'}]
+2023-01-21 18:26:03,901 ERROR myApi Thread-3 : Error during ADD 'hostname'
+2023-01-21 18:26:03,901 ERROR myApi Thread-3 : Exception on /routers [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\App-Logging\app\myApi.py", line 86, in addRouter
+    LOG.warning(f'router added {record["hostname"]}')
+KeyError: 'hostname'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\App-Logging\app\myApi.py", line 94, in addRouter
+    return jsonify({"error": err})
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\flask\json\__init__.py", line 342, in jsonify
+    return current_app.json.response(*args, **kwargs)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\flask\json\provider.py", line 309, in response
+    f"{self.dumps(obj, **dump_args)}\n", mimetype=mimetype
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\flask\json\provider.py", line 230, in dumps
+    return json.dumps(obj, **kwargs)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\json\__init__.py", line 234, in dumps
+    return cls(
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\flask\json\provider.py", line 122, in _default
+    raise TypeError(f"Object of type {type(o).__name__} is not JSON serializable")
+TypeError: Object of type KeyError is not JSON serializable
+2023-01-21 18:26:03,906 INFO werkzeug Thread-3 : 127.0.0.1 - - [21/Jan/2023 18:26:03] "[35m[1mPOST /routers HTTP/1.1[0m" 500 -
+2023-01-21 18:32:41,519 INFO myApi MainThread : script directory: C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\App-Logging\app
+2023-01-21 18:32:41,520 INFO myApi MainThread : DB file: C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\App-Logging\app\db.txt
+2023-01-21 18:32:41,527 INFO werkzeug MainThread : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.107:5000
+2023-01-21 18:32:41,528 INFO werkzeug MainThread : [33mPress CTRL+C to quit[0m
+2023-01-21 18:39:32,074 ERROR myApi Thread-1 : ERROR RAISED: 'hostname'
+2023-01-21 18:39:32,075 ERROR myApi Thread-1 : Exception on /routers [DELETE]
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\App-Logging\app\myApi.py", line 109, in deleteRouter
+    if r['hostname'] == record['hostname']:
+KeyError: 'hostname'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\App-Logging\app\myApi.py", line 120, in deleteRouter
+    return jsonify({"error": err})
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\flask\json\__init__.py", line 342, in jsonify
+    return current_app.json.response(*args, **kwargs)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\flask\json\provider.py", line 309, in response
+    f"{self.dumps(obj, **dump_args)}\n", mimetype=mimetype
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\flask\json\provider.py", line 230, in dumps
+    return json.dumps(obj, **kwargs)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\json\__init__.py", line 234, in dumps
+    return cls(
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\flask\json\provider.py", line 122, in _default
+    raise TypeError(f"Object of type {type(o).__name__} is not JSON serializable")
+TypeError: Object of type KeyError is not JSON serializable
+2023-01-21 18:39:32,080 INFO werkzeug Thread-1 : 127.0.0.1 - - [21/Jan/2023 18:39:32] "[35m[1mDELETE /routers HTTP/1.1[0m" 500 -
+2023-01-21 18:39:45,406 INFO myApi MainThread : script directory: C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\App-Logging\app
+2023-01-21 18:39:45,406 INFO myApi MainThread : DB file: C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\App-Logging\app\db.txt
+2023-01-21 18:39:45,413 INFO werkzeug MainThread : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.107:5000
+2023-01-21 18:39:45,413 INFO werkzeug MainThread : [33mPress CTRL+C to quit[0m
+2023-01-21 18:39:56,171 WARNING myApi Thread-1 : Deleted R1
+2023-01-21 18:39:56,172 INFO werkzeug Thread-1 : 127.0.0.1 - - [21/Jan/2023 18:39:56] "[35m[1mDELETE /routers HTTP/1.1[0m" 204 -
+2023-01-21 18:43:39,882 INFO werkzeug Thread-2 : 127.0.0.1 - - [21/Jan/2023 18:43:39] "[35m[1mDELETE /routers HTTP/1.1[0m" 204 -
+2023-01-21 18:43:52,610 ERROR myApi Thread-3 : ERROR RAISED: 'hostname'
+2023-01-21 18:43:52,610 ERROR myApi Thread-3 : Exception on /routers [DELETE]
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\App-Logging\app\myApi.py", line 109, in deleteRouter
+    if r['hostname'] == record['hostname']:
+KeyError: 'hostname'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\App-Logging\app\myApi.py", line 120, in deleteRouter
+    return jsonify({"error": err})
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\flask\json\__init__.py", line 342, in jsonify
+    return current_app.json.response(*args, **kwargs)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\flask\json\provider.py", line 309, in response
+    f"{self.dumps(obj, **dump_args)}\n", mimetype=mimetype
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\flask\json\provider.py", line 230, in dumps
+    return json.dumps(obj, **kwargs)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\json\__init__.py", line 234, in dumps
+    return cls(
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\flask\json\provider.py", line 122, in _default
+    raise TypeError(f"Object of type {type(o).__name__} is not JSON serializable")
+TypeError: Object of type KeyError is not JSON serializable
+2023-01-21 18:43:52,615 INFO werkzeug Thread-3 : 127.0.0.1 - - [21/Jan/2023 18:43:52] "[35m[1mDELETE /routers HTTP/1.1[0m" 500 -
+2023-01-21 18:44:38,393 INFO werkzeug Thread-4 : 127.0.0.1 - - [21/Jan/2023 18:44:38] "[33mDELETE /router HTTP/1.1[0m" 404 -

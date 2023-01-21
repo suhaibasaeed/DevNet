@@ -36,9 +36,10 @@ def index():
 # Run this function when the endpoint is hit
 def getRouter():
     try:
-        # Parse through query string
+        # Parse through query string and get hostname
         hostname = request.args.get('hostname')
         print(hostname)
+        # Check whether a hostname was actually specified or is empty str
         if (hostname is None) or (hostname == ""):
             LOG.warning('No hostname specified')
             raise ValueError
@@ -52,6 +53,7 @@ def getRouter():
                     # Add a log message to the log file
                     LOG.info('Routers returned')
                     return jsonify(record), 200
+                # Valid request but no matching router, return 200 OK
                 if record['hostname'] != hostname:
                     LOG.warning('No matching router')
                     return jsonify({"response": "No match"}), 200
