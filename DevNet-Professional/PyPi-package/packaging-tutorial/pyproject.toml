@@ -1,3 +1,21 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["setuptools>=61.0", "flask"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "packaging-tutorial_ssaeed"
+version = "1.0.0"
+authors = [
+  { name="Suhaib Saeed", email="saeed.suhaib@gmail.com" },
+]
+description = "A small example package with an API and router class"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/suhaibasaeed/DevNet"
