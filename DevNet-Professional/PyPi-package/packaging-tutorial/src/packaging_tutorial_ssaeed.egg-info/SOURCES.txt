@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+src/example_package_ssaeed/__init__.py
+src/example_package_ssaeed/myApi.py
+src/example_package_ssaeed/routerclass.py
+src/packaging_tutorial_ssaeed.egg-info/PKG-INFO
+src/packaging_tutorial_ssaeed.egg-info/SOURCES.txt
+src/packaging_tutorial_ssaeed.egg-info/dependency_links.txt
+src/packaging_tutorial_ssaeed.egg-info/top_level.txt

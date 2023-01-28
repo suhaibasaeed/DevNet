@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: packaging-tutorial-ssaeed
+Version: 1.0.0
+Summary: A small example package with an API and router class
+Author-email: Suhaib Saeed <saeed.suhaib@gmail.com>
+Project-URL: Homepage, https://github.com/suhaibasaeed/DevNet
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# DevNet Professional demo package
+
+This is a test README for my first test package upload to PyPi
+
+Created by [Suhaib] 
+
+
+- github.com/suhaibasaeed
