@@ -2,7 +2,7 @@ import requests
 from json import dumps
 
 # Get your token here after logging in: https://developer.webex.com/docs/api/getting-started
-token = "Njg1ODgzNjUtYzM1OC00ZmZmLTg2MDEtYzczY2FmNWI1MGNhYzE1M2FlZWQtNDRk_P0A1_4e881e32-f617-4e88-9ba1-0d4fe8ea601d"
+token = "xxx"
 
 # URL we're hitting to hit rooms
 url = "https://webexapis.com/v1/rooms"
@@ -21,9 +21,9 @@ for room in get_response["items"]:
         room_url = f"{url}/{room_id}"
         # DELETE request to delete the room
         delete_response = requests.delete(room_url, headers=headers)
-    
+
         # Raise errors
         delete_response.raise_for_status()
-        
+
         if delete_response.status_code == 204:
             print(f"Room {room['title']} was successfully deleted")

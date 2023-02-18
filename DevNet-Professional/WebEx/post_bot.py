@@ -19,7 +19,7 @@ def send_message(room_id, message):
 
 
 # Bots token
-token = "YjAxNmE2ZTUtMjcyMi00Nzk5LWFmODAtODRmNDJlNjZlOTcwOGJhMDYzMTAtNWJm_P0A1_4e881e32-f617-4e88-9ba1-0d4fe8ea601d"
+token = "xxx"
 
 # URL we're hitting to hit rooms
 url = "https://webexapis.com/v1/rooms"
