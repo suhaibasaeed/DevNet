@@ -1,0 +1,105 @@
+2023-02-18 22:34:08,865 -  nornir.core -     INFO -        run() - Running task 'ospf_neighbors_test' with args {} on 3 hosts
+2023-02-18 22:34:09,927 - nornir.core.task -    ERROR -      start() - Host 'nxos2': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\nornir\core\task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\nornir_netmiko\tasks\netmiko_send_command.py", line 32, in netmiko_send_command
+    result = net_connect.send_command(command_string, **kwargs)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\netmiko\utilities.py", line 592, in wrapper_decorator
+    return func(self, *args, **kwargs)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\netmiko\base_connection.py", line 1729, in send_command
+    return_val = structured_data_converter(
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\netmiko\utilities.py", line 577, in structured_data_converter
+    structured_output_genie = get_structured_data_genie(
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\netmiko\utilities.py", line 500, in get_structured_data_genie
+    raise ValueError(msg)
+ValueError: 
+Genie and PyATS are not installed. Please PIP install both Genie and PyATS:
+pip install genie
+pip install pyats
+
+
+2023-02-18 22:34:09,928 - nornir.core.task -    ERROR -      start() - Host 'nxos2': task 'ospf_neighbors_test' failed with traceback:
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\nornir\core\task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\WebEx\network-alerts\ospf_alert.py", line 19, in ospf_neighbors_test
+    result = task.run(task=netmiko_send_command, command_string="show ip ospf neighbor", use_genie=True)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\nornir\core\task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2023-02-18 22:34:09,958 - nornir.core.task -    ERROR -      start() - Host 'nxos3': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\nornir\core\task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\nornir_netmiko\tasks\netmiko_send_command.py", line 32, in netmiko_send_command
+    result = net_connect.send_command(command_string, **kwargs)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\netmiko\utilities.py", line 592, in wrapper_decorator
+    return func(self, *args, **kwargs)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\netmiko\base_connection.py", line 1729, in send_command
+    return_val = structured_data_converter(
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\netmiko\utilities.py", line 577, in structured_data_converter
+    structured_output_genie = get_structured_data_genie(
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\netmiko\utilities.py", line 500, in get_structured_data_genie
+    raise ValueError(msg)
+ValueError: 
+Genie and PyATS are not installed. Please PIP install both Genie and PyATS:
+pip install genie
+pip install pyats
+
+
+2023-02-18 22:34:09,959 - nornir.core.task -    ERROR -      start() - Host 'nxos3': task 'ospf_neighbors_test' failed with traceback:
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\nornir\core\task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\WebEx\network-alerts\ospf_alert.py", line 19, in ospf_neighbors_test
+    result = task.run(task=netmiko_send_command, command_string="show ip ospf neighbor", use_genie=True)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\nornir\core\task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2023-02-18 22:34:09,978 - nornir.core.task -    ERROR -      start() - Host 'nxos1': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\nornir\core\task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\nornir_netmiko\tasks\netmiko_send_command.py", line 32, in netmiko_send_command
+    result = net_connect.send_command(command_string, **kwargs)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\netmiko\utilities.py", line 592, in wrapper_decorator
+    return func(self, *args, **kwargs)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\netmiko\base_connection.py", line 1729, in send_command
+    return_val = structured_data_converter(
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\netmiko\utilities.py", line 577, in structured_data_converter
+    structured_output_genie = get_structured_data_genie(
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\netmiko\utilities.py", line 500, in get_structured_data_genie
+    raise ValueError(msg)
+ValueError: 
+Genie and PyATS are not installed. Please PIP install both Genie and PyATS:
+pip install genie
+pip install pyats
+
+
+2023-02-18 22:34:09,978 - nornir.core.task -    ERROR -      start() - Host 'nxos1': task 'ospf_neighbors_test' failed with traceback:
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\nornir\core\task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\WebEx\network-alerts\ospf_alert.py", line 19, in ospf_neighbors_test
+    result = task.run(task=netmiko_send_command, command_string="show ip ospf neighbor", use_genie=True)
+  File "C:\Users\User\Documents\Git Repos\DevNet\DevNet-Professional\devnet-env\lib\site-packages\nornir\core\task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2023-02-18 22:34:25,801 -  nornir.core -     INFO -        run() - Running task 'ospf_neighbors_test' with args {} on 3 hosts
+2023-02-18 22:49:49,774 -  nornir.core -     INFO -        run() - Running task 'ospf_neighbors_test' with args {} on 3 hosts
+2023-02-18 22:50:11,560 -  nornir.core -     INFO -        run() - Running task 'ospf_neighbors_test' with args {} on 3 hosts
+2023-02-18 22:50:37,618 -  nornir.core -     INFO -        run() - Running task 'ospf_neighbors_test' with args {} on 3 hosts
+2023-02-18 22:51:15,456 -  nornir.core -     INFO -        run() - Running task 'ospf_neighbors_test' with args {} on 3 hosts
+2023-02-18 22:52:36,428 -  nornir.core -     INFO -        run() - Running task 'ospf_neighbors_test' with args {} on 3 hosts
+2023-02-18 22:53:13,398 -  nornir.core -     INFO -        run() - Running task 'ospf_neighbors_test' with args {} on 3 hosts
+2023-02-18 22:54:17,126 -  nornir.core -     INFO -        run() - Running task 'ospf_neighbors_test' with args {} on 3 hosts
+2023-02-18 23:30:46,191 -  nornir.core -     INFO -        run() - Running task 'ospf_neighbors_test' with args {} on 3 hosts
+2023-02-18 23:41:54,343 -  nornir.core -     INFO -        run() - Running task 'ospf_neighbors_test' with args {} on 3 hosts
+2023-02-18 23:42:23,694 -  nornir.core -     INFO -        run() - Running task 'ospf_neighbors_test' with args {} on 3 hosts

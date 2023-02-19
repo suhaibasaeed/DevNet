@@ -1,0 +1,13 @@
+nxos1:
+  hostname: 192.168.1.108
+  groups:
+    - nxos
+nxos2:
+  hostname: 192.168.1.111
+  groups:
+    - nxos
+nxos3:
+  hostname: 192.168.1.120
+  groups:
+    - nxos
+
