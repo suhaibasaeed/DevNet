@@ -1,6 +1,7 @@
 import requests
 import json
 from rich import print
+
 # Disable SSL Warnings
 requests.packages.urllib3.disable_warnings()
 

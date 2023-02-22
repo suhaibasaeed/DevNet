@@ -43,7 +43,9 @@ def ospf_neighbors_test(task):
                 )
     else:
         print(f"{device_name} has OSPF neighbours down - [red]FAILED[/red]")
-        webex_send_failure_message(f"ALERT - {device_name.upper()} has OSPF neighbours failed")
+        webex_send_failure_message(
+            f"ALERT - {device_name.upper()} has OSPF neighbours failed"
+        )
 
 
 def webex_send_failure_message(message):

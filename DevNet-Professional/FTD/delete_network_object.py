@@ -43,10 +43,10 @@ for item in items:
     if item["name"] == target:
         targetname = item["name"]
         objectId = item["id"]
-        
+
         url = f"https://10.10.20.65/api/fdm/v6/object/networks/{objectId}"
         del_response = requests.delete(url, headers=headers, verify=False)
-        
+
         if del_response.status_code == 204:
             print(f"[green]SUCCESS[/green]: DELETED {targetname} OBJECT")
 

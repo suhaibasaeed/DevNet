@@ -9,8 +9,9 @@ backoffs = {
     # Initial wait time
     "wait": 1,
     # Stop infinite loop
-    "max_tries": 5
+    "max_tries": 5,
 }
+
 
 def get_releases(release_id):
     # Hit delay endpoint with seconds delayed reponse
@@ -21,8 +22,9 @@ def get_releases(release_id):
     response = requests.get(base_url + endpoint)
     data = response.json()
     resp_code = response.status_code
-    
+
     return resp_code
+
 
 for i in range(30):
     tries = 0
@@ -39,7 +41,7 @@ for i in range(30):
                 # Increase wait time by factor 1.3
                 backoffs["wait"] *= backoffs["factor"]
                 tries += 1
-            
+
             # Exit while loop if response code is 200
             elif resp_code == 200:
                 tries = 0

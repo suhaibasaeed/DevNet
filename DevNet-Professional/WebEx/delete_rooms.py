@@ -14,9 +14,9 @@ get_response = requests.get(url, headers=headers).json()
 
 # Loop through rooms and get ID of the ones with suhaib in the title
 for room in get_response["items"]:
-    if 'suhaib' in room["title"]:
+    if "suhaib" in room["title"]:
         room_id = room["id"]
-        
+
         # New room URL
         room_url = f"{url}/{room_id}"
         # DELETE request to delete the room

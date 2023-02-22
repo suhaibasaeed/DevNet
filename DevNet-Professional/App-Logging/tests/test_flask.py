@@ -31,26 +31,42 @@ def test_succeed_fail():
 
 
 def test_post_succeed():
-    response = requests.post(url=f"{base_url}{router_url}", data=json.dumps(
-        post_del_payload_good), headers=headers, verify=False)
+    response = requests.post(
+        url=f"{base_url}{router_url}",
+        data=json.dumps(post_del_payload_good),
+        headers=headers,
+        verify=False,
+    )
     assert response.status_code == 201
 
 
 def test_post_fail():
-    response = requests.post(url=f"{base_url}{router_url}", data=json.dumps(
-        post_del_payload_bad), headers=headers, verify=False)
+    response = requests.post(
+        url=f"{base_url}{router_url}",
+        data=json.dumps(post_del_payload_bad),
+        headers=headers,
+        verify=False,
+    )
     assert response.status_code == 500
 
 
 def test_del_good():
-    response = requests.delete(url=f"{base_url}{router_url}", data=json.dumps(
-        post_del_payload_good), headers=headers, verify=False)
+    response = requests.delete(
+        url=f"{base_url}{router_url}",
+        data=json.dumps(post_del_payload_good),
+        headers=headers,
+        verify=False,
+    )
     assert response.status_code == 204
 
 
 def test_del_fail():
-    response = requests.delete(url=f"{base_url}{router_url}", data=json.dumps(
-        post_del_payload_bad), headers=headers, verify=False)
+    response = requests.delete(
+        url=f"{base_url}{router_url}",
+        data=json.dumps(post_del_payload_bad),
+        headers=headers,
+        verify=False,
+    )
     assert response.status_code == 500
 
 
