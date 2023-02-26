@@ -50,8 +50,6 @@ def get_network_id():
     except Exception as e:
         print(e)
 
-network_id = get_network_id()
-
 
 def get_ssid(network_id):
     
@@ -74,7 +72,7 @@ def get_ssid(network_id):
     except Exception as e:
         print(e)
 
-ssid_details = get_ssid(network_id)
+
 
 def enable_ssid(network_id, ssid_details):
 
@@ -94,6 +92,10 @@ def enable_ssid(network_id, ssid_details):
 
     except Exception as e:
         print(e)
+
+# Get network ID and details about SSID
+network_id = get_network_id()
+ssid_details = get_ssid(network_id)
 
 # Enable SSID passing in network ID and SSID number
 enable_ssid(network_id, ssid_details)
