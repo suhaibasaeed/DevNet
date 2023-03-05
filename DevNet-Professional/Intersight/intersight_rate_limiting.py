@@ -15,7 +15,9 @@ base_url = "https://www.intersight.com/api/v1/"
 session = Session()
 # Create retry object passing in details about retries and codes/methods we want to retry
 retries = Retry(
-    total=3, status_forcelist=[429, 500, 502, 503, 504], method_whitelist=["HEAD", "GET", "OPTIONS"]
+    total=3,
+    status_forcelist=[429, 500, 502, 503, 504],
+    method_whitelist=["HEAD", "GET", "OPTIONS"],
 )
 # Call mount method on session object and pass in base_url and HTTPAdapter object wiht retries obj
 session.mount(base_url, HTTPAdapter(max_retries=retries))

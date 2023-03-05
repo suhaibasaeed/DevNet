@@ -28,6 +28,10 @@ device_id = devices_response["response"][1]["id"]
 # Get VLANs for device
 device_vlan_endpoint = f"intent/api/v1/network-device/{device_id}/vlan"
 
-device_response = requests.get(url=f"{base_url}{device_vlan_endpoint}", headers={"X-Auth-Token": token}, verify=False).json()
+device_response = requests.get(
+    url=f"{base_url}{device_vlan_endpoint}",
+    headers={"X-Auth-Token": token},
+    verify=False,
+).json()
 
 pprint(device_response)

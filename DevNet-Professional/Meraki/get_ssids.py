@@ -19,6 +19,7 @@ headers = {
     "Accept": "application/json",
 }
 
+
 def get_network_id():
     try:
         # Get list of orgs
@@ -36,7 +37,9 @@ def get_network_id():
 
     try:
         # Get list of networks in org
-        networks_response = requests.get(f"{base_url}/organizations/{org_id}/networks", headers=headers)
+        networks_response = requests.get(
+            f"{base_url}/organizations/{org_id}/networks", headers=headers
+        )
 
         if networks_response.status_code == 200:
             networks = networks_response.json()
@@ -50,14 +53,15 @@ def get_network_id():
     except Exception as e:
         print(e)
 
+
 network_id = get_network_id()
 
 
 def get_ssid(network_id):
-    
     try:
-
-        ssid_response = requests.get(f"{base_url}/networks/{network_id}/wireless/ssids", headers=headers)
+        ssid_response = requests.get(
+            f"{base_url}/networks/{network_id}/wireless/ssids", headers=headers
+        )
 
         if ssid_response.status_code == 200:
             ssids = ssid_response.json()
@@ -65,14 +69,15 @@ def get_ssid(network_id):
             for ssid in ssids:
                 if ssid["name"] == "Unconfigured SSID 2":
                     ssid_details = {}
-                    ssid_details["ssid_name"] = ssid["name"],
-                    ssid_details["ssid_id"] = ssid["number"],
+                    ssid_details["ssid_name"] = (ssid["name"],)
+                    ssid_details["ssid_id"] = (ssid["number"],)
                     ssid_details["ssid_status"] = ssid["enabled"]
 
                     return ssid_details
 
     except Exception as e:
         print(e)
+
 
 ssid_details = get_ssid(network_id)
 

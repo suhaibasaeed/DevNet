@@ -19,6 +19,7 @@ headers = {
     "Accept": "application/json",
 }
 
+
 def get_network_id():
     try:
         # Get list of orgs
@@ -36,7 +37,9 @@ def get_network_id():
 
     try:
         # Get list of networks in org
-        networks_response = requests.get(f"{base_url}/organizations/{org_id}/networks", headers=headers)
+        networks_response = requests.get(
+            f"{base_url}/organizations/{org_id}/networks", headers=headers
+        )
 
         if networks_response.status_code == 200:
             networks = networks_response.json()
@@ -52,10 +55,10 @@ def get_network_id():
 
 
 def get_ssid(network_id):
-    
     try:
-
-        ssid_response = requests.get(f"{base_url}/networks/{network_id}/wireless/ssids", headers=headers)
+        ssid_response = requests.get(
+            f"{base_url}/networks/{network_id}/wireless/ssids", headers=headers
+        )
 
         if ssid_response.status_code == 200:
             ssids = ssid_response.json()
@@ -63,8 +66,8 @@ def get_ssid(network_id):
             for ssid in ssids:
                 if ssid["name"] == "Unconfigured SSID 2":
                     ssid_details = {}
-                    ssid_details["ssid_name"] = ssid["name"],
-                    ssid_details["ssid_id"] = ssid["number"],
+                    ssid_details["ssid_name"] = (ssid["name"],)
+                    ssid_details["ssid_id"] = (ssid["number"],)
                     ssid_details["ssid_status"] = ssid["enabled"]
 
                     return ssid_details
@@ -73,25 +76,26 @@ def get_ssid(network_id):
         print(e)
 
 
-
 def enable_ssid(network_id, ssid_details):
-
-    body = {"name": ssid_details['ssid_name'][0], "enabled": True}
+    body = {"name": ssid_details["ssid_name"][0], "enabled": True}
 
     try:
         # Enable SSID via PUT request
-        enable_ssid_response = requests.put(f"{base_url}/networks/{network_id}/wireless/ssids/{ssid_details['ssid_id'][0]}", headers=headers, data=json.dumps(body))
+        enable_ssid_response = requests.put(
+            f"{base_url}/networks/{network_id}/wireless/ssids/{ssid_details['ssid_id'][0]}",
+            headers=headers,
+            data=json.dumps(body),
+        )
 
         if enable_ssid_response.status_code == 200:
-            
             print("SSID enabled successfully")
 
-        
         else:
             print("SSID not enabled")
 
     except Exception as e:
         print(e)
+
 
 # Get network ID and details about SSID
 network_id = get_network_id()

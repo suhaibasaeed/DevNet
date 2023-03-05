@@ -16,4 +16,3 @@ log_resp.raise_for_status()
 log_output = xmltodict.parse(log_resp.text)
 
 print(log_output)
-

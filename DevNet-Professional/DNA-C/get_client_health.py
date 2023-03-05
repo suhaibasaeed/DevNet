@@ -21,10 +21,15 @@ token = auth_response["Token"]
 client_health_endpoint = "intent/api/v1/client-health"
 
 # GET to get client health
-client_health_response = requests.get(url=f"{base_url}{client_health_endpoint}", headers={"X-Auth-Token": token}, verify=False).json()
+client_health_response = requests.get(
+    url=f"{base_url}{client_health_endpoint}",
+    headers={"X-Auth-Token": token},
+    verify=False,
+).json()
 
 scores = client_health_response["response"][0]["scoreDetail"]
 
 for score in scores:
-
-    print(f"{score['scoreCategory']['value']} has {score['clientCount']} clients connected")
+    print(
+        f"{score['scoreCategory']['value']} has {score['clientCount']} clients connected"
+    )

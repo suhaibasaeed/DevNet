@@ -40,6 +40,7 @@ def index():
 
 # GET http://127.0.0.1:5000/routers?hostname=SW1
 
+
 # Add a GET method to the /routers endpoint
 @app.route("/routers", methods=["GET"])
 # Run this function when the endpoint is hit
@@ -77,6 +78,7 @@ def getRouter():
 
 # POST http://127.0.0.1:5000/routers
 
+
 # Add a POST method to the /routers endpoint
 @app.route("/routers", methods=["POST"])
 def addRouter():
@@ -105,6 +107,7 @@ def addRouter():
 
 
 # DELETE http://127.0.0.1:5000/routers?hostname=SW1
+
 
 # Delete method
 @app.route("/routers", methods=["DELETE"])

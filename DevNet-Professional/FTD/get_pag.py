@@ -29,7 +29,6 @@ get_url = "https://10.10.20.65/api/fdm/v6/object/networks"
 get_headers = {"Accept": "application/json", "Authorization": f"Bearer {token}"}
 
 while get_url:
-
     # Use pagination to only get 2 objects
     get_response = requests.get(
         get_url, headers=get_headers, params={"limit": 2}, verify=False

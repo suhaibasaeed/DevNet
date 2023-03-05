@@ -55,4 +55,4 @@ discovery_response = requests.post(
     headers={"X-Auth-Token": token},
     data=dumps(payload),
     verify=False,
-    ).json()
+).json()

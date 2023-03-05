@@ -3,6 +3,7 @@ from aiohttp import ClientSession
 
 base_url = "http://httpbin.org/"
 
+
 # Count to 5 and call .sleep() for 1 second each time
 async def count():
     for i in range(1, 9):

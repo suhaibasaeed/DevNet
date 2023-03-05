@@ -35,11 +35,13 @@ except Exception as e:
 
 try:
     # Get list of networks in org
-    networks_response = requests.get(f"{base_url}/organizations/{org_id}/networks", headers=headers)
+    networks_response = requests.get(
+        f"{base_url}/organizations/{org_id}/networks", headers=headers
+    )
 
     if networks_response.status_code == 200:
         networks = networks_response.json()
-    
+
     for network in networks:
         if network["name"] == "CCNP-SABADO":
             network_id = network["id"]

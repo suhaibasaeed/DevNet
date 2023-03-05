@@ -17,4 +17,3 @@ get_url = "https://www.intersight.com/api/v1/network/Elements"
 get_request = requests.get(get_url, auth=auth)
 
 print(get_request.json())
-

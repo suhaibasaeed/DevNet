@@ -21,15 +21,7 @@ token = auth_response["Token"]
 create_site_endpoint = "intent/api/v1/site"
 
 # body
-data = {
-        "type": "area",
-        "site": {
-            "area": {
-                "name": "Illinois",
-                "parentName": "Global"
-            }
-        }
-}
+data = {"type": "area", "site": {"area": {"name": "Illinois", "parentName": "Global"}}}
 # POST to create a site
 create_site_response = requests.post(
     url=f"{base_url}{create_site_endpoint}",

@@ -4,7 +4,6 @@ from sys import argv
 
 
 def send_message(room_id, message):
-
     """Sends message to a room based on the room ID"""
 
     header = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
