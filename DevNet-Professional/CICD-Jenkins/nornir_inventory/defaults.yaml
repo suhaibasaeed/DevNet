@@ -1,0 +1,9 @@
+---
+username: admin
+password: Pa55word
+platform: ios
+connection_options:
+    napalm:
+      extras:
+        optional_args:
+          secret: Pa55word

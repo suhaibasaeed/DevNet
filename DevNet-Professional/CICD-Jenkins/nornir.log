@@ -1,0 +1,906 @@
+2023-03-11 18:00:09,677 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'show ip int brief'} on 4 hosts
+2023-03-11 18:02:43,642 -  nornir.core -     INFO -        run() - Running task 'get_running' with args {} on 4 hosts
+2023-03-11 18:04:17,244 -  nornir.core -     INFO -        run() - Running task 'get_running' with args {} on 4 hosts
+2023-03-11 18:05:28,464 -  nornir.core -     INFO -        run() - Running task 'get_running' with args {} on 4 hosts
+2023-03-11 18:06:39,036 -  nornir.core -     INFO -        run() - Running task 'get_running' with args {} on 4 hosts
+2023-03-11 18:06:54,940 -  nornir.core -     INFO -        run() - Running task 'get_running' with args {} on 4 hosts
+2023-03-11 18:08:32,371 -  nornir.core -     INFO -        run() - Running task 'get_running' with args {} on 4 hosts
+2023-03-11 18:09:34,986 -  nornir.core -     INFO -        run() - Running task 'get_running' with args {} on 4 hosts
+2023-03-11 18:09:34,988 - nornir.core.task -    ERROR -      start() - Host 'csr1-test': task 'napalm_get' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_napalm/plugins/tasks/napalm_get.py", line 32, in napalm_get
+    device = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_napalm/plugins/connections/__init__.py", line 55, in open
+    network_driver = get_network_driver(platform)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/base/__init__.py", line 99, in get_network_driver
+    raise ModuleImportError(
+napalm.base.exceptions.ModuleImportError: Cannot import "cisco_ios". Is the library installed?
+
+2023-03-11 18:09:34,988 - nornir.core.task -    ERROR -      start() - Host 'csr2-test': task 'napalm_get' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_napalm/plugins/tasks/napalm_get.py", line 32, in napalm_get
+    device = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_napalm/plugins/connections/__init__.py", line 55, in open
+    network_driver = get_network_driver(platform)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/base/__init__.py", line 99, in get_network_driver
+    raise ModuleImportError(
+napalm.base.exceptions.ModuleImportError: Cannot import "cisco_ios". Is the library installed?
+
+2023-03-11 18:09:34,990 - nornir.core.task -    ERROR -      start() - Host 'csr2-test': task 'get_running' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/get_running_cfg.py", line 10, in get_running
+    r = task.run(task=napalm_get, getters=["config"], retrieve="running")
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_get (failed)
+
+
+2023-03-11 18:09:34,990 - nornir.core.task -    ERROR -      start() - Host 'csr1-test': task 'get_running' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/get_running_cfg.py", line 10, in get_running
+    r = task.run(task=napalm_get, getters=["config"], retrieve="running")
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_get (failed)
+
+
+2023-03-11 18:09:34,990 - nornir.core.task -    ERROR -      start() - Host 'csr1-prod': task 'napalm_get' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_napalm/plugins/tasks/napalm_get.py", line 32, in napalm_get
+    device = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_napalm/plugins/connections/__init__.py", line 55, in open
+    network_driver = get_network_driver(platform)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/base/__init__.py", line 99, in get_network_driver
+    raise ModuleImportError(
+napalm.base.exceptions.ModuleImportError: Cannot import "cisco_ios". Is the library installed?
+
+2023-03-11 18:09:34,991 - nornir.core.task -    ERROR -      start() - Host 'csr2-prod': task 'napalm_get' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_napalm/plugins/tasks/napalm_get.py", line 32, in napalm_get
+    device = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_napalm/plugins/connections/__init__.py", line 55, in open
+    network_driver = get_network_driver(platform)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/base/__init__.py", line 99, in get_network_driver
+    raise ModuleImportError(
+napalm.base.exceptions.ModuleImportError: Cannot import "cisco_ios". Is the library installed?
+
+2023-03-11 18:09:34,991 - nornir.core.task -    ERROR -      start() - Host 'csr1-prod': task 'get_running' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/get_running_cfg.py", line 10, in get_running
+    r = task.run(task=napalm_get, getters=["config"], retrieve="running")
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_get (failed)
+
+
+2023-03-11 18:09:34,991 - nornir.core.task -    ERROR -      start() - Host 'csr2-prod': task 'get_running' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/get_running_cfg.py", line 10, in get_running
+    r = task.run(task=napalm_get, getters=["config"], retrieve="running")
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_get (failed)
+
+
+2023-03-11 18:10:40,300 -  nornir.core -     INFO -        run() - Running task 'get_running' with args {} on 4 hosts
+2023-03-11 18:10:51,080 - nornir.core.task -    ERROR -      start() - Host 'csr2-prod': task 'napalm_get' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_napalm/plugins/tasks/napalm_get.py", line 32, in napalm_get
+    device = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_napalm/plugins/connections/__init__.py", line 57, in open
+    connection.open()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 170, in open
+    self.device = self._netmiko_open(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/base/base.py", line 128, in _netmiko_open
+    self._netmiko_device.enable()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/cisco_base_connection.py", line 25, in enable
+    return super().enable(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/base_connection.py", line 1935, in enable
+    output += self.read_until_prompt()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/base_connection.py", line 755, in read_until_prompt
+    return self.read_until_pattern(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/base_connection.py", line 672, in read_until_pattern
+    raise ReadTimeout(msg)
+netmiko.exceptions.ReadTimeout: 
+
+Pattern not detected: 'CSR2\\-prod' in output.
+
+Things you might try to fix this:
+1. Adjust the regex pattern to better identify the terminating string. Note, in
+many situations the pattern is automatically based on the network device's prompt.
+2. Increase the read_timeout to a larger value.
+
+You can also look at the Netmiko session_log or debug log for more information.
+
+
+
+2023-03-11 18:10:51,080 - nornir.core.task -    ERROR -      start() - Host 'csr2-prod': task 'get_running' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/get_running_cfg.py", line 10, in get_running
+    r = task.run(task=napalm_get, getters=["config"], retrieve="running")
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_get (failed)
+
+
+2023-03-11 18:10:51,093 - nornir.core.task -    ERROR -      start() - Host 'csr1-test': task 'napalm_get' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_napalm/plugins/tasks/napalm_get.py", line 32, in napalm_get
+    device = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_napalm/plugins/connections/__init__.py", line 57, in open
+    connection.open()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 170, in open
+    self.device = self._netmiko_open(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/base/base.py", line 128, in _netmiko_open
+    self._netmiko_device.enable()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/cisco_base_connection.py", line 25, in enable
+    return super().enable(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/base_connection.py", line 1935, in enable
+    output += self.read_until_prompt()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/base_connection.py", line 755, in read_until_prompt
+    return self.read_until_pattern(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/base_connection.py", line 672, in read_until_pattern
+    raise ReadTimeout(msg)
+netmiko.exceptions.ReadTimeout: 
+
+Pattern not detected: 'CSR1\\-test' in output.
+
+Things you might try to fix this:
+1. Adjust the regex pattern to better identify the terminating string. Note, in
+many situations the pattern is automatically based on the network device's prompt.
+2. Increase the read_timeout to a larger value.
+
+You can also look at the Netmiko session_log or debug log for more information.
+
+
+
+2023-03-11 18:10:51,093 - nornir.core.task -    ERROR -      start() - Host 'csr1-test': task 'get_running' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/get_running_cfg.py", line 10, in get_running
+    r = task.run(task=napalm_get, getters=["config"], retrieve="running")
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_get (failed)
+
+
+2023-03-11 18:10:51,098 - nornir.core.task -    ERROR -      start() - Host 'csr1-prod': task 'napalm_get' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_napalm/plugins/tasks/napalm_get.py", line 32, in napalm_get
+    device = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_napalm/plugins/connections/__init__.py", line 57, in open
+    connection.open()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 170, in open
+    self.device = self._netmiko_open(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/base/base.py", line 128, in _netmiko_open
+    self._netmiko_device.enable()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/cisco_base_connection.py", line 25, in enable
+    return super().enable(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/base_connection.py", line 1935, in enable
+    output += self.read_until_prompt()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/base_connection.py", line 755, in read_until_prompt
+    return self.read_until_pattern(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/base_connection.py", line 672, in read_until_pattern
+    raise ReadTimeout(msg)
+netmiko.exceptions.ReadTimeout: 
+
+Pattern not detected: 'CSR1\\-prod' in output.
+
+Things you might try to fix this:
+1. Adjust the regex pattern to better identify the terminating string. Note, in
+many situations the pattern is automatically based on the network device's prompt.
+2. Increase the read_timeout to a larger value.
+
+You can also look at the Netmiko session_log or debug log for more information.
+
+
+
+2023-03-11 18:10:51,098 - nornir.core.task -    ERROR -      start() - Host 'csr1-prod': task 'get_running' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/get_running_cfg.py", line 10, in get_running
+    r = task.run(task=napalm_get, getters=["config"], retrieve="running")
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_get (failed)
+
+
+2023-03-11 18:10:51,307 - nornir.core.task -    ERROR -      start() - Host 'csr2-test': task 'napalm_get' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_napalm/plugins/tasks/napalm_get.py", line 32, in napalm_get
+    device = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_napalm/plugins/connections/__init__.py", line 57, in open
+    connection.open()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 170, in open
+    self.device = self._netmiko_open(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/base/base.py", line 128, in _netmiko_open
+    self._netmiko_device.enable()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/cisco_base_connection.py", line 25, in enable
+    return super().enable(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/base_connection.py", line 1935, in enable
+    output += self.read_until_prompt()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/base_connection.py", line 755, in read_until_prompt
+    return self.read_until_pattern(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/base_connection.py", line 672, in read_until_pattern
+    raise ReadTimeout(msg)
+netmiko.exceptions.ReadTimeout: 
+
+Pattern not detected: 'CSR2\\-test' in output.
+
+Things you might try to fix this:
+1. Adjust the regex pattern to better identify the terminating string. Note, in
+many situations the pattern is automatically based on the network device's prompt.
+2. Increase the read_timeout to a larger value.
+
+You can also look at the Netmiko session_log or debug log for more information.
+
+
+
+2023-03-11 18:10:51,308 - nornir.core.task -    ERROR -      start() - Host 'csr2-test': task 'get_running' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/get_running_cfg.py", line 10, in get_running
+    r = task.run(task=napalm_get, getters=["config"], retrieve="running")
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_get (failed)
+
+
+2023-03-11 18:11:39,310 -  nornir.core -     INFO -        run() - Running task 'get_running' with args {} on 4 hosts
+2023-03-11 18:11:40,538 - nornir.core.task -    ERROR -      start() - Host 'csr1-prod': task 'write_file' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_utils/plugins/tasks/files/write_file.py", line 51, in write_file
+    diff = _generate_diff(filename, content, append)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_utils/plugins/tasks/files/write_file.py", line 23, in _generate_diff
+    new_content = content.splitlines()
+AttributeError: 'dict' object has no attribute 'splitlines'
+
+2023-03-11 18:11:40,538 - nornir.core.task -    ERROR -      start() - Host 'csr1-prod': task 'get_running' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/get_running_cfg.py", line 13, in get_running
+    task.run(task=write_file, content=r.result, filename=f"configs/{task.host}.cfg")
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: write_file (failed)
+
+
+2023-03-11 18:11:40,679 - nornir.core.task -    ERROR -      start() - Host 'csr2-test': task 'write_file' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_utils/plugins/tasks/files/write_file.py", line 51, in write_file
+    diff = _generate_diff(filename, content, append)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_utils/plugins/tasks/files/write_file.py", line 23, in _generate_diff
+    new_content = content.splitlines()
+AttributeError: 'dict' object has no attribute 'splitlines'
+
+2023-03-11 18:11:40,680 - nornir.core.task -    ERROR -      start() - Host 'csr2-test': task 'get_running' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/get_running_cfg.py", line 13, in get_running
+    task.run(task=write_file, content=r.result, filename=f"configs/{task.host}.cfg")
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: write_file (failed)
+
+
+2023-03-11 18:11:40,686 - nornir.core.task -    ERROR -      start() - Host 'csr1-test': task 'write_file' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_utils/plugins/tasks/files/write_file.py", line 51, in write_file
+    diff = _generate_diff(filename, content, append)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_utils/plugins/tasks/files/write_file.py", line 23, in _generate_diff
+    new_content = content.splitlines()
+AttributeError: 'dict' object has no attribute 'splitlines'
+
+2023-03-11 18:11:40,686 - nornir.core.task -    ERROR -      start() - Host 'csr1-test': task 'get_running' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/get_running_cfg.py", line 13, in get_running
+    task.run(task=write_file, content=r.result, filename=f"configs/{task.host}.cfg")
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: write_file (failed)
+
+
+2023-03-11 18:11:40,701 - nornir.core.task -    ERROR -      start() - Host 'csr2-prod': task 'write_file' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_utils/plugins/tasks/files/write_file.py", line 51, in write_file
+    diff = _generate_diff(filename, content, append)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_utils/plugins/tasks/files/write_file.py", line 23, in _generate_diff
+    new_content = content.splitlines()
+AttributeError: 'dict' object has no attribute 'splitlines'
+
+2023-03-11 18:11:40,701 - nornir.core.task -    ERROR -      start() - Host 'csr2-prod': task 'get_running' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/get_running_cfg.py", line 13, in get_running
+    task.run(task=write_file, content=r.result, filename=f"configs/{task.host}.cfg")
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: write_file (failed)
+
+
+2023-03-11 18:12:27,905 -  nornir.core -     INFO -        run() - Running task 'get_running' with args {} on 4 hosts
+2023-03-11 18:12:29,138 - nornir.core.task -    ERROR -      start() - Host 'csr1-prod': task 'write_file' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_utils/plugins/tasks/files/write_file.py", line 51, in write_file
+    diff = _generate_diff(filename, content, append)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_utils/plugins/tasks/files/write_file.py", line 23, in _generate_diff
+    new_content = content.splitlines()
+AttributeError: 'dict' object has no attribute 'splitlines'
+
+2023-03-11 18:12:29,138 - nornir.core.task -    ERROR -      start() - Host 'csr1-prod': task 'get_running' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/get_running_cfg.py", line 14, in get_running
+    task.run(task=write_file, content=r.result, filename=f"configs/{task.host}.cfg")
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: write_file (failed)
+
+
+2023-03-11 18:12:29,144 - nornir.core.task -    ERROR -      start() - Host 'csr2-test': task 'write_file' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_utils/plugins/tasks/files/write_file.py", line 51, in write_file
+    diff = _generate_diff(filename, content, append)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_utils/plugins/tasks/files/write_file.py", line 23, in _generate_diff
+    new_content = content.splitlines()
+AttributeError: 'dict' object has no attribute 'splitlines'
+
+2023-03-11 18:12:29,144 - nornir.core.task -    ERROR -      start() - Host 'csr2-test': task 'get_running' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/get_running_cfg.py", line 14, in get_running
+    task.run(task=write_file, content=r.result, filename=f"configs/{task.host}.cfg")
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: write_file (failed)
+
+
+2023-03-11 18:12:29,181 - nornir.core.task -    ERROR -      start() - Host 'csr1-test': task 'write_file' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_utils/plugins/tasks/files/write_file.py", line 51, in write_file
+    diff = _generate_diff(filename, content, append)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_utils/plugins/tasks/files/write_file.py", line 23, in _generate_diff
+    new_content = content.splitlines()
+AttributeError: 'dict' object has no attribute 'splitlines'
+
+2023-03-11 18:12:29,181 - nornir.core.task -    ERROR -      start() - Host 'csr1-test': task 'get_running' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/get_running_cfg.py", line 14, in get_running
+    task.run(task=write_file, content=r.result, filename=f"configs/{task.host}.cfg")
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: write_file (failed)
+
+
+2023-03-11 18:12:29,186 - nornir.core.task -    ERROR -      start() - Host 'csr2-prod': task 'write_file' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_utils/plugins/tasks/files/write_file.py", line 51, in write_file
+    diff = _generate_diff(filename, content, append)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_utils/plugins/tasks/files/write_file.py", line 23, in _generate_diff
+    new_content = content.splitlines()
+AttributeError: 'dict' object has no attribute 'splitlines'
+
+2023-03-11 18:12:29,186 - nornir.core.task -    ERROR -      start() - Host 'csr2-prod': task 'get_running' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/get_running_cfg.py", line 14, in get_running
+    task.run(task=write_file, content=r.result, filename=f"configs/{task.host}.cfg")
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: write_file (failed)
+
+
+2023-03-11 18:13:12,902 -  nornir.core -     INFO -        run() - Running task 'get_running' with args {} on 4 hosts
+2023-03-11 19:09:31,885 -  nornir.core -     INFO -        run() - Running task 'napalm_get' with args {'getters': ['facts']} on 4 hosts
+2023-03-11 19:56:45,182 -  nornir.core -     INFO -        run() - Running task 'config_intfs' with args {} on 4 hosts
+2023-03-11 19:57:24,381 -  nornir.core -     INFO -        run() - Running task 'config_intfs' with args {} on 4 hosts
+2023-03-11 19:57:36,252 -  nornir.core -     INFO -        run() - Running task 'config_intfs' with args {} on 4 hosts
+2023-03-11 19:57:53,186 -  nornir.core -     INFO -        run() - Running task 'config_intfs' with args {} on 4 hosts
+2023-03-11 20:15:59,337 -  nornir.core -     INFO -        run() - Running task 'config_intfs_ospf' with args {} on 4 hosts
+2023-03-11 20:16:01,576 - nornir.core.task -    ERROR -      start() - Host 'csr2-test': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 35, in napalm_configure
+    device.load_merge_candidate(filename=filename, config=configuration)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 317, in load_merge_candidate
+    return_status, msg = self._load_candidate_wrapper(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 271, in _load_candidate_wrapper
+    (return_status, msg) = self._scp_file(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 733, in _scp_file
+    return self._xfer_file(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 802, in _xfer_file
+    raise CommandErrorException(msg)
+napalm.base.exceptions.CommandErrorException: SCP file transfers are not enabled. Configure 'ip scp server enable' on the device.
+
+2023-03-11 20:16:01,576 - nornir.core.task -    ERROR -      start() - Host 'csr2-test': task 'config_intfs_ospf' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/config_intfs_ospf.py", line 22, in config_intfs_ospf
+    ospf_result = task.run(task=napalm_configure, configuration=task.host["config"])
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2023-03-11 20:16:01,983 - nornir.core.task -    ERROR -      start() - Host 'csr1-prod': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 35, in napalm_configure
+    device.load_merge_candidate(filename=filename, config=configuration)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 317, in load_merge_candidate
+    return_status, msg = self._load_candidate_wrapper(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 271, in _load_candidate_wrapper
+    (return_status, msg) = self._scp_file(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 733, in _scp_file
+    return self._xfer_file(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 802, in _xfer_file
+    raise CommandErrorException(msg)
+napalm.base.exceptions.CommandErrorException: SCP file transfers are not enabled. Configure 'ip scp server enable' on the device.
+
+2023-03-11 20:16:01,984 - nornir.core.task -    ERROR -      start() - Host 'csr1-prod': task 'config_intfs_ospf' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/config_intfs_ospf.py", line 22, in config_intfs_ospf
+    ospf_result = task.run(task=napalm_configure, configuration=task.host["config"])
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2023-03-11 20:16:01,992 - nornir.core.task -    ERROR -      start() - Host 'csr1-test': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 35, in napalm_configure
+    device.load_merge_candidate(filename=filename, config=configuration)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 317, in load_merge_candidate
+    return_status, msg = self._load_candidate_wrapper(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 271, in _load_candidate_wrapper
+    (return_status, msg) = self._scp_file(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 733, in _scp_file
+    return self._xfer_file(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 802, in _xfer_file
+    raise CommandErrorException(msg)
+napalm.base.exceptions.CommandErrorException: SCP file transfers are not enabled. Configure 'ip scp server enable' on the device.
+
+2023-03-11 20:16:01,992 - nornir.core.task -    ERROR -      start() - Host 'csr1-test': task 'config_intfs_ospf' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/config_intfs_ospf.py", line 22, in config_intfs_ospf
+    ospf_result = task.run(task=napalm_configure, configuration=task.host["config"])
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2023-03-11 20:16:01,997 - nornir.core.task -    ERROR -      start() - Host 'csr2-prod': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 35, in napalm_configure
+    device.load_merge_candidate(filename=filename, config=configuration)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 317, in load_merge_candidate
+    return_status, msg = self._load_candidate_wrapper(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 271, in _load_candidate_wrapper
+    (return_status, msg) = self._scp_file(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 733, in _scp_file
+    return self._xfer_file(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 802, in _xfer_file
+    raise CommandErrorException(msg)
+napalm.base.exceptions.CommandErrorException: SCP file transfers are not enabled. Configure 'ip scp server enable' on the device.
+
+2023-03-11 20:16:01,997 - nornir.core.task -    ERROR -      start() - Host 'csr2-prod': task 'config_intfs_ospf' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/config_intfs_ospf.py", line 22, in config_intfs_ospf
+    ospf_result = task.run(task=napalm_configure, configuration=task.host["config"])
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2023-03-11 20:17:48,331 -  nornir.core -     INFO -        run() - Running task 'config_intfs_ospf' with args {} on 4 hosts
+2023-03-11 20:17:59,356 - nornir.core.task -    ERROR -      start() - Host 'csr2-prod': task 'netmiko_send_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_netmiko/tasks/netmiko_send_config.py", line 36, in netmiko_send_config
+    net_connect.enable()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/cisco_base_connection.py", line 25, in enable
+    return super().enable(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/base_connection.py", line 1935, in enable
+    output += self.read_until_prompt()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/base_connection.py", line 755, in read_until_prompt
+    return self.read_until_pattern(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/base_connection.py", line 672, in read_until_pattern
+    raise ReadTimeout(msg)
+netmiko.exceptions.ReadTimeout: 
+
+Pattern not detected: 'CSR2\\-prod' in output.
+
+Things you might try to fix this:
+1. Adjust the regex pattern to better identify the terminating string. Note, in
+many situations the pattern is automatically based on the network device's prompt.
+2. Increase the read_timeout to a larger value.
+
+You can also look at the Netmiko session_log or debug log for more information.
+
+
+
+2023-03-11 20:17:59,357 - nornir.core.task -    ERROR -      start() - Host 'csr2-prod': task 'config_intfs_ospf' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/config_intfs_ospf.py", line 23, in config_intfs_ospf
+    ospf_result = task.run(task=netmiko_send_config, config_commands=task.host["config"])
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_config (failed)
+
+
+2023-03-11 20:17:59,363 - nornir.core.task -    ERROR -      start() - Host 'csr2-test': task 'netmiko_send_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_netmiko/tasks/netmiko_send_config.py", line 36, in netmiko_send_config
+    net_connect.enable()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/cisco_base_connection.py", line 25, in enable
+    return super().enable(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/base_connection.py", line 1935, in enable
+    output += self.read_until_prompt()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/base_connection.py", line 755, in read_until_prompt
+    return self.read_until_pattern(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/base_connection.py", line 672, in read_until_pattern
+    raise ReadTimeout(msg)
+netmiko.exceptions.ReadTimeout: 
+
+Pattern not detected: 'CSR2\\-test' in output.
+
+Things you might try to fix this:
+1. Adjust the regex pattern to better identify the terminating string. Note, in
+many situations the pattern is automatically based on the network device's prompt.
+2. Increase the read_timeout to a larger value.
+
+You can also look at the Netmiko session_log or debug log for more information.
+
+
+
+2023-03-11 20:17:59,364 - nornir.core.task -    ERROR -      start() - Host 'csr2-test': task 'config_intfs_ospf' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/config_intfs_ospf.py", line 23, in config_intfs_ospf
+    ospf_result = task.run(task=netmiko_send_config, config_commands=task.host["config"])
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_config (failed)
+
+
+2023-03-11 20:17:59,364 - nornir.core.task -    ERROR -      start() - Host 'csr1-prod': task 'netmiko_send_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_netmiko/tasks/netmiko_send_config.py", line 36, in netmiko_send_config
+    net_connect.enable()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/cisco_base_connection.py", line 25, in enable
+    return super().enable(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/base_connection.py", line 1935, in enable
+    output += self.read_until_prompt()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/base_connection.py", line 755, in read_until_prompt
+    return self.read_until_pattern(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/base_connection.py", line 672, in read_until_pattern
+    raise ReadTimeout(msg)
+netmiko.exceptions.ReadTimeout: 
+
+Pattern not detected: 'CSR1\\-prod' in output.
+
+Things you might try to fix this:
+1. Adjust the regex pattern to better identify the terminating string. Note, in
+many situations the pattern is automatically based on the network device's prompt.
+2. Increase the read_timeout to a larger value.
+
+You can also look at the Netmiko session_log or debug log for more information.
+
+
+
+2023-03-11 20:17:59,364 - nornir.core.task -    ERROR -      start() - Host 'csr1-prod': task 'config_intfs_ospf' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/config_intfs_ospf.py", line 23, in config_intfs_ospf
+    ospf_result = task.run(task=netmiko_send_config, config_commands=task.host["config"])
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_config (failed)
+
+
+2023-03-11 20:17:59,399 - nornir.core.task -    ERROR -      start() - Host 'csr1-test': task 'netmiko_send_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_netmiko/tasks/netmiko_send_config.py", line 36, in netmiko_send_config
+    net_connect.enable()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/cisco_base_connection.py", line 25, in enable
+    return super().enable(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/base_connection.py", line 1935, in enable
+    output += self.read_until_prompt()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/base_connection.py", line 755, in read_until_prompt
+    return self.read_until_pattern(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/base_connection.py", line 672, in read_until_pattern
+    raise ReadTimeout(msg)
+netmiko.exceptions.ReadTimeout: 
+
+Pattern not detected: 'CSR1\\-test' in output.
+
+Things you might try to fix this:
+1. Adjust the regex pattern to better identify the terminating string. Note, in
+many situations the pattern is automatically based on the network device's prompt.
+2. Increase the read_timeout to a larger value.
+
+You can also look at the Netmiko session_log or debug log for more information.
+
+
+
+2023-03-11 20:17:59,399 - nornir.core.task -    ERROR -      start() - Host 'csr1-test': task 'config_intfs_ospf' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/config_intfs_ospf.py", line 23, in config_intfs_ospf
+    ospf_result = task.run(task=netmiko_send_config, config_commands=task.host["config"])
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_config (failed)
+
+
+2023-03-11 20:20:44,135 -  nornir.core -     INFO -        run() - Running task 'config_intfs_ospf' with args {} on 4 hosts
+2023-03-11 20:20:46,389 - nornir.core.task -    ERROR -      start() - Host 'csr2-prod': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 35, in napalm_configure
+    device.load_merge_candidate(filename=filename, config=configuration)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 317, in load_merge_candidate
+    return_status, msg = self._load_candidate_wrapper(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 271, in _load_candidate_wrapper
+    (return_status, msg) = self._scp_file(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 733, in _scp_file
+    return self._xfer_file(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 805, in _xfer_file
+    transfer.transfer_file()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/scp_handler.py", line 392, in transfer_file
+    self.put_file()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/scp_handler.py", line 407, in put_file
+    self.scp_conn.scp_transfer_file(self.source_file, destination)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/scp_handler.py", line 56, in scp_transfer_file
+    self.scp_client.put(source_file, dest_file)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/scp.py", line 195, in put
+    self._recv_confirm()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/scp.py", line 410, in _recv_confirm
+    raise SCPException(asunicode(msg[1:]))
+scp.SCPException: Privilege denied.
+
+
+2023-03-11 20:20:46,389 - nornir.core.task -    ERROR -      start() - Host 'csr2-prod': task 'config_intfs_ospf' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/config_intfs_ospf.py", line 22, in config_intfs_ospf
+    ospf_result = task.run(task=napalm_configure, configuration=task.host["config"])
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2023-03-11 20:20:46,583 - nornir.core.task -    ERROR -      start() - Host 'csr1-test': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 35, in napalm_configure
+    device.load_merge_candidate(filename=filename, config=configuration)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 317, in load_merge_candidate
+    return_status, msg = self._load_candidate_wrapper(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 271, in _load_candidate_wrapper
+    (return_status, msg) = self._scp_file(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 733, in _scp_file
+    return self._xfer_file(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 805, in _xfer_file
+    transfer.transfer_file()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/scp_handler.py", line 392, in transfer_file
+    self.put_file()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/scp_handler.py", line 407, in put_file
+    self.scp_conn.scp_transfer_file(self.source_file, destination)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/scp_handler.py", line 56, in scp_transfer_file
+    self.scp_client.put(source_file, dest_file)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/scp.py", line 195, in put
+    self._recv_confirm()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/scp.py", line 410, in _recv_confirm
+    raise SCPException(asunicode(msg[1:]))
+scp.SCPException: Privilege denied.
+
+
+2023-03-11 20:20:46,584 - nornir.core.task -    ERROR -      start() - Host 'csr1-test': task 'config_intfs_ospf' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/config_intfs_ospf.py", line 22, in config_intfs_ospf
+    ospf_result = task.run(task=napalm_configure, configuration=task.host["config"])
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2023-03-11 20:20:46,589 - nornir.core.task -    ERROR -      start() - Host 'csr1-prod': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 35, in napalm_configure
+    device.load_merge_candidate(filename=filename, config=configuration)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 317, in load_merge_candidate
+    return_status, msg = self._load_candidate_wrapper(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 271, in _load_candidate_wrapper
+    (return_status, msg) = self._scp_file(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 733, in _scp_file
+    return self._xfer_file(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 805, in _xfer_file
+    transfer.transfer_file()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/scp_handler.py", line 392, in transfer_file
+    self.put_file()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/scp_handler.py", line 407, in put_file
+    self.scp_conn.scp_transfer_file(self.source_file, destination)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/scp_handler.py", line 56, in scp_transfer_file
+    self.scp_client.put(source_file, dest_file)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/scp.py", line 195, in put
+    self._recv_confirm()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/scp.py", line 410, in _recv_confirm
+    raise SCPException(asunicode(msg[1:]))
+scp.SCPException: Privilege denied.
+
+
+2023-03-11 20:20:46,589 - nornir.core.task -    ERROR -      start() - Host 'csr1-prod': task 'config_intfs_ospf' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/config_intfs_ospf.py", line 22, in config_intfs_ospf
+    ospf_result = task.run(task=napalm_configure, configuration=task.host["config"])
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2023-03-11 20:20:46,611 - nornir.core.task -    ERROR -      start() - Host 'csr2-test': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 35, in napalm_configure
+    device.load_merge_candidate(filename=filename, config=configuration)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 317, in load_merge_candidate
+    return_status, msg = self._load_candidate_wrapper(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 271, in _load_candidate_wrapper
+    (return_status, msg) = self._scp_file(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 733, in _scp_file
+    return self._xfer_file(
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/napalm/ios/ios.py", line 805, in _xfer_file
+    transfer.transfer_file()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/scp_handler.py", line 392, in transfer_file
+    self.put_file()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/scp_handler.py", line 407, in put_file
+    self.scp_conn.scp_transfer_file(self.source_file, destination)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/netmiko/scp_handler.py", line 56, in scp_transfer_file
+    self.scp_client.put(source_file, dest_file)
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/scp.py", line 195, in put
+    self._recv_confirm()
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/scp.py", line 410, in _recv_confirm
+    raise SCPException(asunicode(msg[1:]))
+scp.SCPException: Privilege denied.
+
+
+2023-03-11 20:20:46,611 - nornir.core.task -    ERROR -      start() - Host 'csr2-test': task 'config_intfs_ospf' failed with traceback:
+Traceback (most recent call last):
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/lancejack/Documents/git-stuff/NetDevOpsDemo/config_intfs_ospf.py", line 22, in config_intfs_ospf
+    ospf_result = task.run(task=napalm_configure, configuration=task.host["config"])
+  File "/home/lancejack/Documents/venv/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2023-03-11 20:25:22,998 -  nornir.core -     INFO -        run() - Running task 'config_intfs_ospf' with args {} on 4 hosts
+2023-03-11 20:29:58,759 -  nornir.core -     INFO -        run() - Running task 'get_running' with args {} on 4 hosts
+2023-03-11 21:05:16,411 -  nornir.core -     INFO -        run() - Running task 'config_intfs_ospf' with args {} on 4 hosts
+2023-03-11 21:11:57,285 -  nornir.core -     INFO -        run() - Running task 'config_intfs_ospf' with args {} on 4 hosts
+2023-03-11 21:15:50,707 -  nornir.core -     INFO -        run() - Running task 'config_intfs_ospf' with args {} on 4 hosts
+2023-03-11 21:18:11,044 -  nornir.core -     INFO -        run() - Running task 'config_intfs_ospf' with args {} on 2 hosts

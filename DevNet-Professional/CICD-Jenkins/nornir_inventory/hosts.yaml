@@ -1,0 +1,30 @@
+---
+
+csr1-test:
+  hostname: 192.168.1.111
+  groups:
+    - test
+  data:
+    gi2ip: 10.1.1.1
+
+csr2-test:
+  hostname: 192.168.1.120
+  groups:
+    - test
+  data:
+    gi2ip: 10.1.1.2
+  
+csr1-prod:
+  hostname: 192.168.1.122
+  groups:
+    - prod
+  data:
+    gi2ip: 10.1.1.1
+  
+csr2-prod:
+  hostname: 192.168.1.110
+  groups:
+    - prod
+  data:
+    gi2ip: 10.1.1.2
+  
