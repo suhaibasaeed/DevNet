@@ -1,0 +1,43 @@
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "hello-app"
+  namespace: "default"
+  labels:
+    app: "hello-app"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "hello-app"
+  template:
+    metadata:
+      labels:
+        app: "hello-app"
+    spec:
+      containers:
+      - name: "hello-app-sha256-1"
+        image: "gcr.io/devcor-381021/hello-app@sha256:6bc6f27fd4974b96c057de28fc13d4736814601cff1708874ae3d741730721cc"
+---
+apiVersion: "autoscaling/v2"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "hello-app-hpa-qs4f"
+  namespace: "default"
+  labels:
+    app: "hello-app"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "hello-app"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: "Resource"
+    resource:
+      name: "cpu"
+      target:
+        type: "Utilization"
+        averageUtilization: 80
