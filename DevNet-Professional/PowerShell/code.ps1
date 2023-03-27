@@ -2,7 +2,7 @@ function dosomework {
     [CmdletBinding()]
     param (
     )
-    Write hi
+    Write-Output hi
 
     try {
         failthis
