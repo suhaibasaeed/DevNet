@@ -4,5 +4,5 @@ Cisco-IOS-XE-native:Loopback:
       ip:
         address:
           primary:
-            address: 1.1.1.1
+            address: 1.1.1.2
             mask: 255.255.255.255
