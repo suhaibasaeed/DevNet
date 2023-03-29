@@ -1,0 +1,37 @@
+---
+ietf-routing:routing:
+  routing-instance:
+  - name: MGMT
+    interfaces:
+      interface:
+      - GigabitEthernet1
+    routing-protocols:
+      routing-protocol:
+      - type: ietf-routing:static
+        name: '1'
+  - name: default
+    description: 'default-vrf '
+    routing-protocols:
+      routing-protocol:
+      - type: ietf-ospf:ospfv2
+        name: '1'
+        ietf-ospf:ospf:
+          instance:
+          - af: ietf-routing:ipv4
+            nsr:
+              enable: false
+            auto-cost:
+              enable: false
+            cisco-ospf:redistribution:
+              rip: {}
+      - type: ietf-routing:static
+        name: '1'
+        static-routes:
+          ietf-ipv4-unicast-routing:ipv4:
+            route:
+            - destination-prefix: 99.99.99.0/24
+              next-hop:
+                outgoing-interface: GigabitEthernet2
+            - destination-prefix: 100.100.100.0/24
+              next-hop:
+                outgoing-interface: GigabitEthernet2

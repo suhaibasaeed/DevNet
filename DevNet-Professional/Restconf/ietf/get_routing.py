@@ -16,8 +16,8 @@ headers = {
     # We want YANG data in JSON format
     "Accept": "application/yang-data+json",
 }
-# Get the running configuration
-url = f"https://{device['host']}:{device['port']}/restconf/data/native"
+# Get the routing stanza for ietf-routing YANG module
+url = f"https://{device['host']}:{device['port']}/restconf/data/ietf-routing:routing"
 
 # Send POST request to create loopback interface
 response = requests.get(url, auth=(device["username"], device["password"]), headers=headers, verify=False)
@@ -26,5 +26,5 @@ response = requests.get(url, auth=(device["username"], device["password"]), head
 response.raise_for_status()
 
 print(response.text)
-
+print(url)
 
