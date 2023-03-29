@@ -1,0 +1,86 @@
+{
+  "Cisco-IOS-XE-native:interface": {
+    "GigabitEthernet": [
+      {
+        "name": "1",
+        "vrf": {
+          "forwarding": "MGMT"
+        },
+        "ip": {
+          "address": {
+            "dhcp": {
+            }
+          }
+        },
+        "mop": {
+          "enabled": false,
+          "sysid": false
+        },
+        "Cisco-IOS-XE-ethernet:negotiation": {
+          "auto": true
+        }
+      },
+      {
+        "name": "2",
+        "ip": {
+          "address": {
+            "primary": {
+              "address": "10.1.1.1",
+              "mask": "255.255.255.0"
+            }
+          },
+          "Cisco-IOS-XE-ospf:ospf": {
+            "process-id": [
+              {
+                "id": 1,
+                "area": 0
+              }
+            ]
+          }
+        },
+        "mop": {
+          "enabled": false,
+          "sysid": false
+        },
+        "Cisco-IOS-XE-ethernet:negotiation": {
+          "auto": true
+        }
+      },
+      {
+        "name": "3",
+        "shutdown": [null],
+        "mop": {
+          "enabled": false,
+          "sysid": false
+        },
+        "Cisco-IOS-XE-ethernet:negotiation": {
+          "auto": true
+        }
+      },
+      {
+        "name": "4",
+        "shutdown": [null],
+        "mop": {
+          "enabled": false,
+          "sysid": false
+        },
+        "Cisco-IOS-XE-ethernet:negotiation": {
+          "auto": true
+        }
+      }
+    ],
+    "Loopback": [
+      {
+        "name": 0,
+        "ip": {
+          "address": {
+            "primary": {
+              "address": "1.1.1.5",
+              "mask": "255.255.255.255"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -16,9 +16,8 @@ headers = {
     # We want YANG data in JSON format
     "Accept": "application/yang-data+json",
 }
-# native/interface is part of the YANG model
-url = f"https://{device['host']}:{device['port']}/restconf/data/native/interface/Loopback"
-
+# Get the running configuration
+url = f"https://{device['host']}:{device['port']}/restconf/data/native"
 
 # Send POST request to create loopback interface
 response = requests.get(url, auth=(device["username"], device["password"]), headers=headers, verify=False)
@@ -26,7 +25,6 @@ response = requests.get(url, auth=(device["username"], device["password"]), head
 # Flag an error if the request fails
 response.raise_for_status()
 
-print(response.json())
-
+print(response.text)
 
 
