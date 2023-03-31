@@ -1,3 +1,5 @@
 .env
 devnet-env/
 private-key.txt
+.modules
+.resource_types

@@ -1,0 +1,19 @@
+targets:
+- alias: CSR1
+  config:
+    transport: remote
+    remote:
+      remote-transport: cisco_ios
+      user: admin
+      password: admin
+      enable_password: admin
+  uri: 192.168.1.108
+- alias: CSR2
+  config:
+    transport: remote
+    remote:
+      remote-transport: cisco_ios
+      user: admin
+      password: admin
+      enable_password: admin
+  uri: 192.168.1.111
