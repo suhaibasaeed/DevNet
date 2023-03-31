@@ -1,0 +1,13 @@
+---
+  ospf_config:
+    Cisco-IOS-XE-native:router:
+      Cisco-IOS-XE-ospf:ospf:
+      - id: 1
+        network:
+        - area: 0
+          ip: 1.1.1.1
+          mask: 0.0.0.0
+        - area: 0
+          ip: 10.1.1.1
+          mask: 0.0.0.255
+        router-id: 1.1.1.1

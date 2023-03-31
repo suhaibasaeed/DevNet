@@ -1,0 +1,21 @@
+---
+
+- name: Play 1 - RESTCONF GET
+  hosts: CSR1
+  connection: local
+  tasks:
+    - name: GET info
+      uri:
+        url: "{{ url }}/data/native"
+        user: "{{ ansible_user }}"
+        password: "{{ ansible_password }}"
+        method: GET
+        return_content: yes
+        headers:
+          Accept: "application/yang-data+json"
+        validate_certs: no
+      register: result
+
+    - name: Print result
+      ansible.builtin.debug:
+        var: result.content

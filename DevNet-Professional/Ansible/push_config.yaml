@@ -1,0 +1,62 @@
+---
+- name: Play1
+  hosts: routers
+  connection: local
+  tasks:
+
+    - name: Configure SNMP via RESTCONF
+      uri:
+        url: "{{ url }}/data/native/snmp-server"
+        user: "{{ ansible_user }}"
+        password: "{{ ansible_password }}"
+        method: PUT
+        headers:
+          Content-Type: application/yang-data+json
+          # Get errors in JSON too
+          Accept: application/yang-data+json
+
+          body_format: json
+          body: "{{ snmp_config }}"
+          validate_certs: no
+          status_code:
+            - 200
+            - 204
+    
+    - name: Configure NTP via RESTCONF
+      uri:
+        url: "{{ url }}/data/native/ntp"
+        user: "{{ ansible_user }}"
+        password: "{{ ansible_password }}"
+        method: PUT
+        headers:
+          Content-Type: "application/yang-data+json"
+          # Get errors in JSON too
+          Accept:
+            application/yang-data+json
+            application/yang-data.errors+json
+          body_format: json
+          body: "{{ ntp_config }}"
+          validate_certs: no
+          status_code:
+            - 200
+            - 204
+    
+    - name: Configure OSPF via RESTCONF
+      uri:
+        url: "{{ url }}/data/native/router"
+        user: "{{ ansible_user }}"
+        password: "{{ ansible_password }}"
+        method: PUT
+        headers:
+          Content-Type: "application/yang-data+json"
+          # Get errors in JSON too
+          Accept:
+            application/yang-data+json
+            application/yang-data.errors+json
+          body_format: json
+          body: "{{ ospf_config }}"
+          validate_certs: no
+          status_code:
+            - 200
+            - 204
+
