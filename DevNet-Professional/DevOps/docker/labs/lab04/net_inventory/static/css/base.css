@@ -1,0 +1,55 @@
+#mainContainer {
+    padding-top: 20px;
+}
+
+.row {
+    padding-bottom: 20px;
+}
+
+.fa {
+    padding-right: 6px;
+}
+
+.fa-times {
+    color: red;
+}
+
+.fa-check {
+    color: green;
+}
+
+.fa-info-circle {
+    color: gray;
+}
+
+body {
+    background-color: #E8E6E4;
+}
+
+.btn-primary,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus {
+    background-color: #52669b;
+    border-color: #54679b;
+}
+
+.btn-primary:hover {
+    background-color: #52669b;
+    border-color: #bca563;
+    color: #95aaee;
+}
+
+.btn-primary:disabled {
+    background-color: gray;
+}
+
+.btn,
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10), 0 6px 20px 0 rgba(0, 0, 0, 0.40);
+}
+
+.spinner-grow {
+    margin-left: 3px;
+}
+

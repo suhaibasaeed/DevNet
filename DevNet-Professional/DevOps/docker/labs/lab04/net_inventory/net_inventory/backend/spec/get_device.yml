@@ -1,0 +1,26 @@
+Get a devices
+---
+tags:
+  - inventory
+parameters:
+  - in: path
+    name: hostname
+    type: string
+    description: hostname
+    example: nyc-rt00
+    required: true
+responses:
+  200:
+    description: Success
+    examples:
+      application/json:
+        data:
+          device_type: switch
+          hostname: nyc-rt00
+          ip_address: 10.100.10.10
+          os: ios
+          password: Cisco123
+          role: dc-spine
+          site: nyc
+          username: admin
+        errors: {}

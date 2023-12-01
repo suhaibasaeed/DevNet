@@ -1,0 +1,25 @@
+Get a list of devices
+---
+tags:
+  - inventory
+responses:
+  200:
+    description: Success
+    examples:
+      application/json:
+        data:
+        - device_type: Switch
+          hostname: nyc-rt00
+          ip_address: 10.100.10.10
+          role: dc-spine
+          site: nyc
+        - device_type: router
+          hostname: nyc-rt01
+          ip_address: 10.100.10.11
+          role: dc-spine
+          site: nyc
+        - device_type: router
+          hostname: nyc-rt02
+          ip_address: 10.100.10.12
+          role: dc-spine
+          site: nyc
