@@ -17,12 +17,6 @@ RUN apt install -y git vim
 # install python packages
 RUN pip install -r ./requirements.txt
 
-# Add Environment Variables
-ENV ENV=BACKEND
-ENV SECRET_KEY=aj8j6PIbaJpJXBS8jjvcylT84G+1UhxjXQFz6pJPNuQ=
-ENV POSTGRES_USER=net_inventory
-ENV SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://root:Cisco123@netinv_db/net_inventory'
-
 # doesn't actually do anything, just documentation purposes. forward your port at runtime
 EXPOSE 5001/tcp
 

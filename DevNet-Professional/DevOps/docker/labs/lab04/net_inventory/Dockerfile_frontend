@@ -17,10 +17,6 @@ RUN apt install -y git vim
 # install python packages
 RUN pip install -r ./requirements.txt
 
-# Add Environment Variables
-ENV ENV=FRONTEND
-ENV URL=http://netinv_backend:5001
-
 # doesn't actually do anything, just documentation purposes. forward your port at runtime
 EXPOSE 5000/tcp
 
