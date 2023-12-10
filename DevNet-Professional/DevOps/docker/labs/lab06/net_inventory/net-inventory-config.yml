@@ -1,0 +1,52 @@
+---
+DEVELOPMENT:
+  APP_NAME: NET Inventory
+  APP_SHORTNAME: NET Inventory
+  DEBUG: true
+  HOST: 0.0.0.0
+  LOGGING_LEVEL: DEBUG
+  LOGGING_LOCATION: error.log
+  SECRET_KEY: 'aj8j6PIbaJpJXBS8jjvcylT84G+1UhxjXQFz6pJPNuQ='
+  SQLALCHEMY_DATABASE_URI: sqlite:///database.db
+  PORT: 5000
+  SSL: false
+  APP:
+   - "net_inventory.backend.api"
+   - "net_inventory.frontend.views"
+
+PRODUCTION:
+  APP_NAME: NET Inventory
+  APP_SHORTNAME: NET Inventory
+  DEBUG: true
+  HOST: 0.0.0.0
+  LOGGING_LEVEL: DEBUG
+  LOGGING_LOCATION: error.log
+  PORT: 5000
+  SSL: false
+  APP:
+   - "net_inventory.backend.api"
+   - "net_inventory.frontend.views"
+
+FRONTEND:
+  APP_NAME: NET Inventory
+  APP_SHORTNAME: NET Inventory
+  DEBUG: true
+  HOST: 0.0.0.0
+  LOGGING_LEVEL: DEBUG
+  LOGGING_LOCATION: error.log
+  PORT: 5000
+  SSL: false
+  APP:
+   - "net_inventory.frontend.views"
+
+BACKEND:
+  APP_NAME: NET Inventory
+  APP_SHORTNAME: NET Inventory
+  DEBUG: true
+  HOST: 0.0.0.0
+  LOGGING_LEVEL: DEBUG
+  LOGGING_LOCATION: error.log
+  PORT: 5001
+  SSL: false
+  APP:
+   - "net_inventory.backend.api"

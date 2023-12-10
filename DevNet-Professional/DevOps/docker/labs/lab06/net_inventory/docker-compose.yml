@@ -1,0 +1,30 @@
+---
+version: '3'
+services:
+
+  netinv_db:
+    build:
+      context: . 
+      dockerfile: "Dockerfile_db"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: 'net_inventory'
+      POSTGRES_USER: 'root'
+      POSTGRES_PASSWORD: 'Cisco123'
+
+  netinv_backend:
+    build:
+      context: . 
+      dockerfile: "Dockerfile_backend"
+    restart: always
+    environment:
+      ENV: "BACKEND"
+      SECRET_KEY: 'aj8j6PIbaJpJXBS8jjvcylT84G+1UhxjXQFz6pJPNuQ='
+      SQLALCHEMY_DATABASE_URI: 'postgresql+psycopg2://root:Cisco123@netinv_db/net_inventory'
+    volumes:
+      - .:/app
+    ports:
+     - "5001:5001"
+    depends_on:
+      - netinv_db
