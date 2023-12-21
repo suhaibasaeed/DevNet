@@ -71,7 +71,7 @@ def update_device(hostname):
     Returns:
         JSON object
     """
-    device = DB.session.query(Device).filter(Device.hostname == hostname).first() # pylint: disable=no-member
+    device = DB.session.query(Device).filter(Device.hostname == hostname).first()  # pylint: disable=no-member
     if not device:
         abort(404, {"message": "{} not found".format(hostname)})
     for key, val in request.json.items():
@@ -92,7 +92,7 @@ def delete_device(hostname):
     Returns:
         JSON object
     """
-    device = DB.session.query(Device).filter(Device.hostname == hostname).first() # pylint: disable=no-member
+    device = DB.session.query(Device).filter(Device.hostname == hostname).first()  # pylint: disable=no-member
     if not device:
         abort(404, {"message": "{} not found".format(hostname)})
     DB.session.delete(device)

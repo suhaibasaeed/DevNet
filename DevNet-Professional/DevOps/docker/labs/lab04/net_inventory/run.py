@@ -5,9 +5,12 @@ from flask import redirect
 from app import create_app, DB
 
 app = create_app()
-@app.route('/')
+
+
+@app.route("/")
 def base():
     return redirect("./views/inventory/devices", code=302)
+
 
 Migrate(app, DB)
 if __name__ == "__main__":

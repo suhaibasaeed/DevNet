@@ -17,7 +17,9 @@ def api_call(url, method, params=None, json=None):
     headers = {"Accept": "application/json", "Content-Type": "application/json"}
 
     try:
-        req = getattr(requests, method.lower())(api_base_url + url, params=params, json=json, headers=headers)
+        req = getattr(requests, method.lower())(
+            api_base_url + url, params=params, json=json, headers=headers
+        )
     except requests.exceptions.ConnectionError:
         return {"message": "ConnectionError"}
 

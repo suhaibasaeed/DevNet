@@ -33,7 +33,10 @@ DEVICES = [
 class TestNetInventoryAPI(unittest.TestCase):
     def clean_db(self):
         for device in DEVICES:
-            self.app.delete("/api/v1/inventory/devices/{}".format(device["hostname"]), content_type="application/json")
+            self.app.delete(
+                "/api/v1/inventory/devices/{}".format(device["hostname"]),
+                content_type="application/json",
+            )
 
     def test_create_device(self):
         rv = self.app.post(
@@ -53,7 +56,9 @@ class TestNetInventoryAPI(unittest.TestCase):
             content_type="application/json",
         )
         self.assertEqual(rv.status_code, 201)
-        rv = self.app.delete("/api/v1/inventory/devices/nyc-rt03", content_type="application/json")
+        rv = self.app.delete(
+            "/api/v1/inventory/devices/nyc-rt03", content_type="application/json"
+        )
         self.clean_db()
 
     def test_get_devices(self):
@@ -63,13 +68,17 @@ class TestNetInventoryAPI(unittest.TestCase):
         self.clean_db()
 
     def test_get_device(self):
-        rv = self.app.get("/api/v1/inventory/devices/{}".format("nyc-rt01"), content_type="application/json")
+        rv = self.app.get(
+            "/api/v1/inventory/devices/{}".format("nyc-rt01"),
+            content_type="application/json",
+        )
         self.assertEqual(rv.status_code, 200)
-        self.assertEqual(json.loads(rv.get_data())["data"]["ip_address"], "10.201.15.11")
+        self.assertEqual(
+            json.loads(rv.get_data())["data"]["ip_address"], "10.201.15.11"
+        )
         self.clean_db()
 
     def setUp(self):
-
         app = create_app()
         self.app = app.test_client()
         with app.app_context():
@@ -77,7 +86,11 @@ class TestNetInventoryAPI(unittest.TestCase):
             db.drop_all()
             db.create_all()
             for device in DEVICES:
-                self.app.post("/api/v1/inventory/devices", data=json.dumps(device), content_type="application/json")
+                self.app.post(
+                    "/api/v1/inventory/devices",
+                    data=json.dumps(device),
+                    content_type="application/json",
+                )
 
     def tearDown(self):
         pass

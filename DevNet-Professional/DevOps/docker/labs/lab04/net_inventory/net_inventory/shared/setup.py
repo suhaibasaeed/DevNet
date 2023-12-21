@@ -12,7 +12,10 @@ def blueprint_by_name(app, included_blueprints):
 
 
 def configure_logs(app):
-    basicConfig(filename=app.config["LOGGING_LOCATION"], level=getattr(logging, app.config["LOGGING_LEVEL"]))
+    basicConfig(
+        filename=app.config["LOGGING_LOCATION"],
+        level=getattr(logging, app.config["LOGGING_LEVEL"]),
+    )
     logger = getLogger()
     logger.addHandler(StreamHandler())
 
@@ -39,7 +42,10 @@ def setup_swagger(app):
         "info": {
             "title": "NET INVENTORY",
             "description": "API FOR NET INVENTORY",
-            "contact": {"responsibleOrganization": "Nexi", "responsibleDeveloper": "DevOps Maintainer"},
+            "contact": {
+                "responsibleOrganization": "Nexi",
+                "responsibleDeveloper": "DevOps Maintainer",
+            },
             "version": "1.0",
         },
         "schemes": ["http", "https"],
