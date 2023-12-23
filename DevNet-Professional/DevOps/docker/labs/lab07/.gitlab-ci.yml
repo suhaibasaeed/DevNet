@@ -20,11 +20,14 @@ build:
     - "echo BUILD BACKEND"
     - "docker build -t $CI_REGISTRY_IMAGE_BACKEND -f Dockerfile_backend ."
     - "docker tag $CI_REGISTRY_IMAGE_BACKEND registry.git.lab/cisco-devops/net_inventory/$CI_REGISTRY_IMAGE_BACKEND:$CI_COMMIT_REF_SLUG"
-
+    - "echo BUILD FRONTEND"
+    - "docker build -t $CI_REGISTRY_IMAGE_FRONTEND -f Dockerfile_frontend ."
+    - "docker tag $CI_REGISTRY_IMAGE_FRONTEND registry.git.lab/cisco-devops/net_inventory/$CI_REGISTRY_IMAGE_FRONTEND:$CI_COMMIT_REF_SLUG"
 deploy:
   stage: "deploy"
   script:
     - "docker push registry.git.lab/cisco-devops/net_inventory/$CI_REGISTRY_IMAGE_DB:$CI_COMMIT_REF_SLUG"
     - "docker push registry.git.lab/cisco-devops/net_inventory/$CI_REGISTRY_IMAGE_BACKEND:$CI_COMMIT_REF_SLUG"
+    - "docker push registry.git.lab/cisco-devops/net_inventory/$CI_REGISTRY_IMAGE_FRONTEND:$CI_COMMIT_REF_SLUG"
   only:
     - "master"
