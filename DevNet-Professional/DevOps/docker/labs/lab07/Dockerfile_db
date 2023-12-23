@@ -1,0 +1,8 @@
+FROM suhaibasaeed/postgres:latest
+
+# metadata
+LABEL description="This is a postgresDB"
+LABEL maintainer="Cisco <noreply@cisco.com>"
+LABEL version="0.1"
+
+EXPOSE 5432/tcp
