@@ -1,3 +1,4 @@
+# Pipeline to build and deploy the Net Inventory application container image to the GitLab registry
 stages:
   - "build"
   - "deploy"
@@ -10,7 +11,7 @@ variables:
 before_script:
   - "docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD https://registry.git.lab"
   - "echo $CI_COMMIT_REF_SLUG"
-
+# This stage runs when we create a merge request into the master branch
 build:
   stage: "build"
   script:
@@ -23,6 +24,7 @@ build:
     - "echo BUILD FRONTEND"
     - "docker build -t $CI_REGISTRY_IMAGE_FRONTEND -f Dockerfile_frontend ."
     - "docker tag $CI_REGISTRY_IMAGE_FRONTEND registry.git.lab/cisco-devops/net_inventory/$CI_REGISTRY_IMAGE_FRONTEND:$CI_COMMIT_REF_SLUG"
+# This stage runs after we merge the merge request into the master branch
 deploy:
   stage: "deploy"
   script:
@@ -31,3 +33,4 @@ deploy:
     - "docker push registry.git.lab/cisco-devops/net_inventory/$CI_REGISTRY_IMAGE_FRONTEND:$CI_COMMIT_REF_SLUG"
   only:
     - "master"
+
