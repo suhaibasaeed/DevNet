@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block scripts %}
+<link href="{{ url_for('static', filename='css/index.css') }}" rel="stylesheet">
+{% endblock scripts%}
+
+{% block content %}
+{% for row in inventory %}
+    <!-- Modal -->
+    <div class="modal fade" id="{{ row['hostname'] }}Modal" tabindex="-1" role="dialog" aria-labelledby="{{ row['hostname'] }}DetailsModal" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="{{ row['hostname'] }}DetailsModal">{{ row['hostname'] }} Verification Errors</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div id="{{ row['hostname'] }}ModalBody">
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-verify" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endfor %}
+  <div class="row">
+    <div class="col-xl-12">
+    <h1 id="header">Network Inventory</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-12" id="verify-btn-col">
+    </div>
+  </div>
+
+<div class="row">
+
+    <div class="col-xl-12">
+
+    <div class="card">
+    <div class="card-body">
+
+        <table class="table table-hover table-host-status" id="statusTable">
+          <thead>
+            <tr>
+              <th scope="col">Hostname</th>
+              <th scope="col">IP</th>
+              <th scope="col">Role</th>
+              <th scope="col">Site</th>
+              <th scope="col">OS</th>
+              <th scope="col">Username</th>
+              <th scope="col">Password</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for row in inventory %}
+              <tr>
+                <th scope="row">{{ row['hostname'] }}</th>
+                <td>{{ row['ip_address'] }}</td>
+                <td>{{ row['role'] }}</td>
+                <td>{{ row['site'] }}</td>
+                <td>{{ row['os'] }}</td>
+                <td>{{ row['username'] }}</td>
+                <td>{{ row['password'] }}</td>
+              </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+    </div>
+    </div>
+    </div>
+
+    <img src="{{ url_for('static', filename='images/1200px-Cisco_logo_blue_2016.png') }}" alt="Cisco Logo" id="cisco-logo">
+
+</div>
+
+<script>
+
+</script>
+
+{% endblock content %}

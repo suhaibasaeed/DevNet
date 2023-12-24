@@ -1,0 +1,25 @@
+.btn-verify {
+    margin-bottom: 15px;
+}
+.table-host-status {
+    text-align: left;
+}
+
+.modal-body {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+#cisco-logo {
+    width: 95px;
+    height: 50.09px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+
+}
+
+#header {
+    text-align: center;
+}
