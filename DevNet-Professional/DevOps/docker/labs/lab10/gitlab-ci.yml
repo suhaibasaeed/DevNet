@@ -16,8 +16,8 @@ test:
   stage: "test"
   script:
     - "echo Testing"
-    - "pylint net_inventory/"
-    - "black ."
+    - "pylint net_inventory"
+    - "black ./"
     - "python -m pytest -v tests/"
 
 build:
@@ -40,12 +40,16 @@ deploy:
     - "docker push registry.git.lab/cisco-devops/net_inventory/$CI_REGISTRY_IMAGE_BACKEND:$CI_COMMIT_REF_SLUG"
     - "docker push registry.git.lab/cisco-devops/net_inventory/$CI_REGISTRY_IMAGE_FRONTEND:$CI_COMMIT_REF_SLUG"
     - >-
-       ssh -tt student@k8s1 
-       'export SECRET_KEY=$SECRET_KEY && export SQLALCHEMY_DATABASE_URI=$SQLALCHEMY_DATABASE_URI && 
-        export POSTGRES_DB=$POSTGRES_DB && export  POSTGRES_USER=$POSTGRES_USER && 
-        export POSTGRES_PASSWORD=$POSTGRES_PASSWORD && 
-        cd /deploy/ && 
-        rm -rf ./net_inventory || true && git clone https://git.lab/cisco-devops/net_inventory.git/ && cd /deploy/net_inventory && 
-        docker-compose stop || true && docker-compose rm -f || true && docker-compose up -d'
+        ssh -tt student@k8s1
+        "export SECRET_KEY=$SECRET_KEY && export SQLALCHEMY_DATABASE_URI=$SQLALCHEMY_DATABASE_URI &&
+         export POSTGRES_DB=$POSTGRES_DB && export  POSTGRES_USER=$POSTGRES_USER &&
+         export POSTGRES_PASSWORD=$POSTGRES_PASSWORD &&
+         cd /deploy/ &&
+         rm -rf ./net_inventory || true && git clone https://git.lab/cisco-devops/net_inventory.git/ && cd /deploy/net_inventory &&
+         docker-compose stop || true && docker-compose rm -f || true && docker-compose up -d"
+    - ssh -tt student@k8s3 "ping -w 10 k8s1"
+    - ssh -tt student@k8s3 'curl -m 2 -f -s -o /dev/null -w "%{http_code}" http://k8s1:5000/views/inventory/devices'
+    - ssh -tt student@k8s3 'curl -m 2 -f -s -o /dev/null -w "%{http_code}" http://k8s1:5001/api/v1/inventory/devices'
+
   only:
     - "master"
