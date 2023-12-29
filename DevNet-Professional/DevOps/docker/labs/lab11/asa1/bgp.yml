@@ -1,0 +1,9 @@
+---
+local_as: 
+neighbors:
+  - ip: 
+    remote_as: 
+advertised_networks:
+  - ip: 
+    mask: 
+

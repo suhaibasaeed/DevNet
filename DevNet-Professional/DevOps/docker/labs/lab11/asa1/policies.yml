@@ -1,0 +1,24 @@
+---
+INSIDE:
+  interface: 
+  policies:
+    - action: 
+      protocol: 
+      source:
+        ip: 
+        mask: 
+      destination:
+        ip: 
+        mask: 
+OUTSIDE:
+  interface: 
+  policies:
+    - action: 
+      protocol: 
+      source:
+        ip: 
+        mask: 
+      destination:
+        ip: 
+        mask: 
+

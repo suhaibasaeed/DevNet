@@ -1,0 +1,58 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "local_as": {
+            "type": "number"
+        },
+        "neighbors": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "ip": {
+                        "type": "string",
+                        "format": "ipv4"
+                    },
+                    "remote_as": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "ip",
+                    "remote_as"
+                ],
+                "additionalProperties": false
+            },
+            "uniqueItems": true
+        },
+        "advertised_networks": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "ip": {
+                        "type": "string",
+                        "format": "ipv4"
+                    },
+                    "mask": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 32
+                    }
+                },
+                "required": [
+                    "ip",
+                    "mask"
+                ],
+                "additionalProperties": false
+            },
+            "uniqueItems": true
+        }
+    },
+    "required": [
+        "local_as",
+        "neighbors",
+        "advertised_networks"
+    ]
+}

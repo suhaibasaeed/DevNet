@@ -1,0 +1,53 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "patternProperties": {
+        "^[A-Z].+\\d": {
+            "type": "object",
+            "properties": {
+                "zone": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "security_level": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 100
+                        }
+                    },
+                    "required": [
+                        "name",
+                        "security_level"
+                    ],
+                    "additionalProperties": false
+                },
+                "ip_address": {
+                    "type": "object",
+                    "properties": {
+                        "ip": {
+                            "type": "string",
+                            "format": "ipv4"
+                        },
+                        "mask": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 32
+                        }
+                    },
+                    "required": [
+                        "ip",
+                        "mask"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "required": [
+                "ip_address"
+            ],
+            "additionalProperties": false
+        }
+    },
+    "additionalProperties": false
+}

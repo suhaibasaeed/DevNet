@@ -1,0 +1,15 @@
+---
+GigabitEthernet0/0:
+  zone:
+    name: 
+    security_level: 
+  ip_address:
+    ip: 
+    mask: 
+GigabitEthernet0/1:
+  zone:
+    name: 
+    security_level: 
+  ip_address:
+    ip: 
+    mask: 
