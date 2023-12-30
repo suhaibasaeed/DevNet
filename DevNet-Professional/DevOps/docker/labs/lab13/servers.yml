@@ -1,0 +1,72 @@
+---
+- name: "INSTALL SERVER PACKAGES"
+  hosts: "k8s"
+  gather_facts: no
+  become: yes
+  tasks:
+    - name: "RUN THE EQUIVALENT OF 'apt-get update' AS A SEPARATE STEP"
+      apt:
+        update_cache: yes
+
+    - name: "INSTALL LINUX PACKAGES"
+      apt:
+        name:
+          - "apt-transport-https"
+          - "ca-certificates"
+          - "curl"
+          - "gnupg2"
+          - "python3-pip"
+          - "software-properties-common"
+          - "docker-compose"
+  
+    - name: "ADD DOCKER KEY TO APT"
+      apt_key:
+        url: "https://download.docker.com/linux/ubuntu/gpg"
+        state: "present"
+
+    - name: "ADD DOCKER REPO TO APT"
+      apt_repository:
+        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ lookup('pipe', 'echo $(lsb_release -cs)') }} stable"
+    
+    - name: "INSTALL DOCKER PACKAGE"
+      apt:
+        name: "docker-ce"
+        update_cache: yes
+        state: "latest"
+
+    - name: "CREATE SSH DIR ON REMOTE HOST"
+      file:
+        path: "/home/student/.ssh"
+        state: "directory"
+        owner: "student"
+        group: "student"
+        mode: "0700"
+
+    - name: "COPY SSH KEYS, CERTS AND /etc/hosts FOR REMOTE HOSTS"
+      copy:
+        src: "{{ item['src'] }}"
+        dest: "{{ item['dest'] }}"
+        owner: "student"
+        group: "student"
+        mode: "0600"
+      loop:
+        - src: "./files_for_remote_hosts/authorized_keys_for_remote_servers"
+          dest: "/home/student/.ssh/authorized_keys"
+        - src: "./files_for_remote_hosts/hosts"
+          dest: "/etc/hosts"
+        - src: "./files_for_remote_hosts/git.lab.crt"
+          dest: "/usr/local/share/ca-certificates/git.lab.crt"
+        - src: "./files_for_remote_hosts/root-git.lab.crt"
+          dest: "/usr/local/share/ca-certificates/root-git.lab.crt"
+        - src: "./files_for_remote_hosts/id_rsa"
+          dest: "/home/student/.ssh/id_rsa"
+
+    - name: "UPDATE CERTIFICATES"
+      command:
+        cmd: "update-ca-certificates"
+
+    - name: "ADD STUDENT USER TO DOCKER GROUP"
+      user:
+        name: "student"
+        groups: "docker"
+        append: "yes"

@@ -1,0 +1,22 @@
+---
+- name: "CREATE AND DEPLOY ROUTER CONFIGURATIONS"
+  hosts: "routers"
+  gather_facts: no
+  tasks:
+    - name: "LOAD CONFIG VARIABLES FROM VARS FILE"
+      include_vars:
+        file: "vars/{{ inventory_hostname }}/{{ item }}.yml"
+        name: "{{ item }}_config"
+      loop: ["interfaces", "bgp"]
+      delegate_to: "localhost"
+    
+    - name: "BUILD CONFIGURATION ARTIFACTS FOR DEVICES"
+      template:
+        src: "templates/routers.j2"
+        dest: "outputs/configs/{{ inventory_hostname }}"
+      delegate_to: "localhost"
+    
+    - name: "DEPLOY CONFIGURATION ARTIFACTS TO DEVICES"
+      ios_config:
+        src: "outputs/configs/{{ inventory_hostname }}"
+        save_when: "changed"

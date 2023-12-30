@@ -1,0 +1,41 @@
+---
+INSIDE:
+  interface: "inside"
+  policies:
+    - action: "permit"
+      protocol: "icmp"
+      source:
+        ip: "10.10.0.0"
+        mask: 22
+      destination:
+        ip: "10.10.3.0"
+        mask: 24
+OUTSIDE:
+  interface: "outside"
+  policies:
+    - action: "permit"
+      protocol: "icmp"
+      source:
+        ip: "0.0.0.0"
+        mask: 0
+      destination:
+        ip: "10.10.1.10"
+        mask: 32
+    - action: "permit"
+      protocol: "tcp"
+      source:
+        ip: "0.0.0.0"
+        mask: 0
+      destination:
+        ip: "10.10.1.10"
+        mask: 32 
+      destination_port: 5000
+    - action: "permit"
+      protocol: "tcp"
+      source:
+        ip: "0.0.0.0"
+        mask: 0
+      destination:
+        ip: "10.10.1.10"
+        mask: 32
+      destination_port: 5001

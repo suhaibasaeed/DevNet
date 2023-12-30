@@ -1,0 +1,13 @@
+---
+GigabitEthernet1:
+  ip_address:
+    ip: "172.16.100.2"
+    mask: 30
+GigabitEthernet2:
+  ip_address:
+    ip: "172.16.100.10"
+    mask: 30
+GigabitEthernet3:
+  ip_address:
+    ip: "10.10.4.1"
+    mask: 24
