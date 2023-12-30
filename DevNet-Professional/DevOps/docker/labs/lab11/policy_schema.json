@@ -1,0 +1,93 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "patternProperties": {
+        "^.": {
+            "type": "object",
+            "properties": {
+                "interface": {
+                    "type": "string"
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "action": {
+                                "type": "string",
+                                "enum": [
+                                    "permit",
+                                    "deny"
+                                ]
+                            },
+                            "protocol": {
+                                "type": "string",
+                                "enum": [
+                                    "ip",
+                                    "tcp",
+                                    "udp",
+                                    "icmp"
+                                ]
+                            },
+                            "source": {
+                                "type": "object",
+                                "properties": {
+                                    "ip": {
+                                        "type": "string",
+                                        "format": "ipv4"
+                                    },
+                                    "mask": {
+                                        "type": "number",
+                                        "minimum": 0,
+                                        "maximum": 32
+                                    }
+                                },
+                                "required": [
+                                    "ip",
+                                    "mask"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "destination": {
+                                "type": "object",
+                                "properties": {
+                                    "ip": {
+                                        "type": "string",
+                                        "format": "ipv4"
+                                    },
+                                    "mask": {
+                                        "type": "number",
+                                        "minimum": 0,
+                                        "maximum": 32
+                                    }
+                                },
+                                "required": [
+                                    "ip",
+                                    "mask"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "destination_port": {
+                                "type": "number",
+                                "minimum": 1,
+                                "maximum": 65535
+                            }
+                        },
+                        "required": [
+                            "action",
+                            "protocol",
+                            "source",
+                            "destination"
+                        ]
+                    },
+                    "uniqueItems": true
+                }
+            },
+            "required": [
+                "interface",
+                "policies"
+            ],
+            "additionalProperties": false
+        }
+    }
+}
