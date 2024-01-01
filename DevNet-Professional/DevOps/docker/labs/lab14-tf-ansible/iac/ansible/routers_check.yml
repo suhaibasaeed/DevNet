@@ -1,0 +1,72 @@
+---
+- name: "VALIDATE ROUTERS CONFIGURATIONS"
+  hosts: "routers"
+  gather_facts: no
+  tasks:
+
+    - name: "CHECK IF DEVICE IS REACHABLE"
+      wait_for:
+        host: "{{ ansible_host }}"
+        port: 22
+        timeout: 600
+      delegate_to: "localhost"
+
+    - name: "LOAD CONFIG VARIABLES FROM VARS FILE"
+      include_vars:
+        file: "vars/{{ inventory_hostname }}/{{ item }}.yml"
+        name: "{{ item }}_config"
+      loop: ["interfaces", "bgp"]
+
+    - name: "COLLECT FACTS INFORMATION"
+      ios_facts:
+        gather_subset: "all"
+
+    - name: "CONFIRM INTERFACES ARE ENABLED"
+      assert:
+        that:
+          - "interface['value']['lineprotocol'] == 'up '"
+          - "interface['value']['operstatus'] == 'up'"
+        success_msg: "Interface {{ interface['key'] }} is UP"
+        fail_msg: "Interface {{ interface['key'] }} is DOWN"
+      when: "interface['key'] in interfaces_config.keys() | list"
+      loop: "{{ ansible_facts['net_interfaces'] | dict2items  }}"
+      loop_control:
+        loop_var: "interface"
+
+    - name: "CHECK IP ADDRESSES"
+      assert:
+        that:
+          - "interface['value']['ipv4'][0]['address'] == interfaces_config[interface['key']]['ip_address']['ip']"
+          - "interface['value']['ipv4'][0]['subnet'] == interfaces_config[interface['key']]['ip_address']['mask'] | string"
+        success_msg: "IP address for interface {{ interface['key'] }} is compliant"
+        fail_msg: "IP address for interface {{ interface['key'] }} is NON compliant"
+      when: "interface['key'] in interfaces_config.keys() | list"
+      loop: "{{ ansible_facts['net_interfaces'] | dict2items  }}"
+      loop_control:
+        loop_var: "interface"
+
+    - name: "CONFIRM REACHABILITY TO NEIGHBORS"
+      ios_ping:
+        dest: "{{ neighbor['ip'] }}"
+      loop: "{{ bgp_config['neighbors'] }}"
+      loop_control:
+        loop_var: "neighbor"
+
+    - name: "CHECK BGP NEIGHBORS STATUS"
+      uri:
+        url: "https://{{ ansible_host }}/restconf/data/Cisco-IOS-XE-bgp-oper:bgp-state-data"
+        url_username: "{{ ansible_user }}"
+        url_password: "{{ ansible_ssh_pass }}"
+        method: "GET"
+        headers:
+          Content-Type: "application/yang-data+json"
+          Accept: "application/yang-data+json"
+        return_content: "yes"
+        validate_certs: "no"
+      delegate_to: "localhost"
+      register: "bgp_neighbors_data"
+
+    - name: "DEBUG BGP NEIGHBORS STATUS"
+      debug:
+        msg: "{{ bgp_neighbors_data.content | bgp_state_validation }}"
+

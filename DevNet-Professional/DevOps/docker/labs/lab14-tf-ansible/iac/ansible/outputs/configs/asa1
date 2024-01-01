@@ -1,0 +1,23 @@
+interface GigabitEthernet0/0
+ nameif inside
+ security-level 100
+ ip address 10.10.4.254 255.255.255.0
+ no shutdown
+interface GigabitEthernet0/1
+ nameif outside
+ security-level 0
+ ip address 10.10.3.1 255.255.255.0
+ no shutdown
+
+router bgp 65004
+ address-family ipv4 unicast
+  neighbor 10.10.4.1 remote-as 65003
+  network 10.10.3.0 mask 255.255.255.0
+
+access-list INSIDE extended permit icmp 10.10.0.0 255.255.252.0 10.10.3.0 255.255.255.0
+access-list OUTSIDE extended permit icmp any host 10.10.1.10
+access-list OUTSIDE extended permit tcp any host 10.10.1.10 eq 5000
+access-list OUTSIDE extended permit tcp any host 10.10.1.10 eq 5001
+
+access-group INSIDE in interface inside
+access-group OUTSIDE in interface outside

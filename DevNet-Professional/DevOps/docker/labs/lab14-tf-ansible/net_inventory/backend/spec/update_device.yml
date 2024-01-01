@@ -1,0 +1,64 @@
+Update list a device
+---
+tags:
+  - inventory
+security:
+  - token: []
+definitions:
+  update_inventory_device:
+      properties:
+        hostname:
+          description: "Device hostname"
+          example: "nyc-rt00"
+          type: string
+          required: true
+        tenant:
+          description: "Tenant the Device is assigned to"
+          example: "ntc"
+          type: string
+          required: true
+        site:
+          description: "Device site code"
+          example: "nyc"
+          type: string
+          required: true
+        ip_address:
+          description: "Device IP address"
+          example: "10.100.10.10"
+          type: string
+          required: true
+        device_type:
+          description: "Device type"
+          example: "switch"
+          type: string
+          required: true
+        role:
+          description: "Device role"
+          example: "dc-spine"
+          type: string
+          required: true
+parameters:
+  - in: path
+    name: hostname
+    type: string
+    description: hostname
+    example: nyc-rt00
+    required: true
+  - in: body
+    name: body
+    description: "body of the request"
+    schema:
+      $ref: "#/definitions/create_inventory_device"
+responses:
+  200:
+    description: Successfully updated
+    examples:
+      application/json:
+        data:
+          device_type: switch
+          hostname: nyc-rt00
+          tenant: ntc
+          ip_address: 10.100.10.10
+          role: dc-spine
+          site: nyc
+        errors: {}
