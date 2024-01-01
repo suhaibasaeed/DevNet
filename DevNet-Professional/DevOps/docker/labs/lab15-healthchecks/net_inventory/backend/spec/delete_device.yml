@@ -1,0 +1,17 @@
+Create a device
+---
+tags:
+  - inventory
+parameters:
+  - in: path
+    name: hostname
+    type: string
+    description: hostname
+    example: nyc-rt00
+    required: true
+responses:
+  200:
+    description: Successfully removed
+    examples:
+      application/json:
+        hostname: nyc-rt00

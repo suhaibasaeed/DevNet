@@ -1,0 +1,58 @@
+#jinja2: lstrip_blocks: True
+{% if interfaces_config %}
+  {% for interface, config in interfaces_config.items() %}
+    {% set ip_addr = config["ip_address"] %}
+    {% set ip_cidr = ip_addr["ip"] ~ "/" ~ ip_addr["mask"] %}
+    {% set zone = config["zone"] %}
+interface {{ interface }}
+ nameif {{ zone["name"] }}
+ security-level {{ zone["security_level"] }}
+ ip address {{ ip_addr["ip"] }} {{ ip_cidr | ipaddr("netmask") }}
+ no shutdown
+  {% endfor %}
+{% endif %}
+
+{% if bgp_config %}
+router bgp {{ bgp_config["local_as"] }}
+ address-family ipv4 unicast
+  {% for neighbor in bgp_config["neighbors"] %}
+  neighbor {{ neighbor["ip"] }} remote-as {{ neighbor["remote_as"] }}
+  {% endfor %}
+  {% for network in bgp_config["advertised_networks"] %}
+    {% set ip_cidr = network["ip"] ~ "/" ~ network["mask"] %}
+  network {{ network["ip"] }} mask {{ ip_cidr | ipaddr("netmask") }}
+  {% endfor %}
+{% endif %}
+
+{% if policies_config %}
+  {% for policy, config in policies_config.items() %}
+    {% for entry in config["policies"] %}
+    {% set src_ip = entry["source"]["ip"] %}
+    {% set src_mask = entry["source"]["mask"] %}
+    {% if src_mask == 0 %}
+      {% set src_addr = "any" %}
+    {% elif src_mask == 32 %}
+      {% set src_addr = "host " ~ src_ip %}
+    {% else %}
+      {% set src_ip_cidr = src_ip ~ "/" ~ src_mask %}
+      {% set src_addr = src_ip ~ " " ~ src_ip_cidr | ipaddr("netmask") %}
+    {% endif %}
+    {% set dst_ip = entry["destination"]["ip"] %}
+    {% set dst_mask = entry["destination"]["mask"] %}
+    {% if dst_mask == 0 %}
+      {% set dst_addr = "any" %}
+    {% elif dst_mask == 32 %}
+      {% set dst_addr = "host " ~ dst_ip %}
+    {% else %}
+      {% set dst_ip_cidr = dst_ip ~ "/" ~ dst_mask %}
+      {% set dst_addr = dst_ip ~ " " ~ dst_ip_cidr | ipaddr("netmask") %}
+    {% endif %}
+access-list {{ policy }} extended {{ entry["action"] }} {{ entry["protocol"] }} {{ src_addr }} {{ dst_addr }}{% if entry.get("destination_port") %} eq {{ entry["destination_port"] }}{% endif %}
+
+    {% endfor %}
+  {% endfor %}
+
+  {% for policy, config in policies_config.items() %}
+access-group {{ policy }} in interface {{ config["interface"] }}
+  {% endfor %}
+{% endif %}

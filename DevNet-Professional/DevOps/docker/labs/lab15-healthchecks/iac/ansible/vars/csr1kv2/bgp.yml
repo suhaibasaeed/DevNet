@@ -1,0 +1,10 @@
+---
+local_as: 65002
+neighbors:
+  - ip: "172.16.100.5"
+    remote_as: 65001
+  - ip: "172.16.100.10"
+    remote_as: 65003
+advertised_networks:
+  - ip: "10.10.2.0"
+    mask: 24

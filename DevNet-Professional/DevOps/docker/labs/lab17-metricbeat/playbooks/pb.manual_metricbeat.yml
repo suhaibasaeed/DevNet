@@ -1,0 +1,36 @@
+---
+- name: "INSTALL FILEBEAT FROM LOCAL FILE WITH APT"
+  hosts: k8servers
+  gather_facts: no
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: "COPY FILEBEAT FROM SERVER TO HOST"
+      shell: "scp /tmp/metricbeat-7.4.2-amd64.deb student@{{ inventory_hostname }}:/tmp/metricbeat-7.4.2-amd64.deb"
+      delegate_to: localhost
+
+    - name: "GET FILES IN TMP FOLDER"
+      find:
+        paths: /tmp
+        patterns: "metricbeat-7.4.2-amd64.deb"
+      register: find_file
+
+    - name: "VERIFY METRICBEAT IS ON SERVER"
+      assert:
+        that: "find_file['matched'] == 1"
+        fail_msg: "Metricbeat file is not on the server, please install with ~/scripts/copy_metricbeat.sh"
+        success_msg: "Metricbeat file present, continuing"
+
+    - name: "INSTALL METRICBEAT FROM DEB FILE"
+      apt:
+        deb: /tmp/metricbeat-7.4.2-amd64.deb
+
+    - name: "GET STATE OF FILEBEAT"
+      systemd:
+        name: metricbeat
+      register: metricbeat_status
+
+    - name: "ASSERT METRICBEAT INSTALLED"
+      assert:
+        that: "'lightweight' in metricbeat_status['status']['Description']"
+...
