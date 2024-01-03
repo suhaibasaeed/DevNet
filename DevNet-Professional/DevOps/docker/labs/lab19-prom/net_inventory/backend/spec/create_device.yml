@@ -1,0 +1,68 @@
+Create a device
+---
+tags:
+  - inventory
+definitions:
+  create_inventory_device:
+    properties:
+      hostname:
+        description: "Device hostname"
+        example: "nyc-rt00"
+        type: string
+        required: true
+      site:
+        description: "Device site code"
+        example: "nyc"
+        type: string
+        required: true
+      ip_address:
+        description: "Device IP address"
+        example: "10.100.10.10"
+        type: string
+        required: true
+      device_type:
+        description: "Device type"
+        example: "switch"
+        type: string
+        required: true
+      role:
+        description: "Device role"
+        example: "dc-spine"
+        type: string
+        required: true
+      os:
+        description: "OS of device"
+        example: "ios"
+        type: string
+        required: true
+      username:
+        description: "Username for credential access"
+        example: "admin"
+        type: string
+        required: true
+      password:
+        description: "Password for credential access"
+        example: "Cisco123"
+        type: string
+        required: true
+parameters:
+  - in: body
+    name: body
+    description: "body of the request"
+    schema:
+      $ref: "#/definitions/create_inventory_device"
+responses:
+  201:
+    description: Successfully added
+    examples:
+      application/json:
+        data:
+          device_type: switch
+          hostname: nyc-rt00
+          ip_address: 10.100.10.10
+          role: dc-spine
+          site: nyc
+          os: ios
+          username: admin
+          password: Cisco123
+        errors: {}

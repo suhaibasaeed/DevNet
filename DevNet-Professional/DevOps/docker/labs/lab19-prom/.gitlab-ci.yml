@@ -1,0 +1,113 @@
+stages:
+  - "test_topology_build"
+  - "test_build"
+  - "test_deploy"
+  - "test_cleanup"
+  - "build"
+  - "deploy"
+
+variables:
+  CI_REGISTRY_IMAGE_DB: "net_inventory_db"
+  CI_REGISTRY_IMAGE_BACKEND: "net_inventory_backend"
+  CI_REGISTRY_IMAGE_FRONTEND: "net_inventory_frontend"
+
+before_script:
+  - "docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD https://registry.git.lab"
+  - "echo $CI_COMMIT_REF_SLUG"
+
+test_topology_build:
+  stage: "test_topology_build"
+  script:
+    - "cd iac/terraform/"
+    - "terraform apply -auto-approve"
+    - "cat terraform.tfstate"
+    - "cd ../ansible/"
+    - "ansible-playbook -i hosts firewalls.yml"
+    - "ansible-playbook -i hosts routers.yml"
+    - "ansible-playbook -i servers servers.yml"
+    - "ansible-playbook -i hosts routers_check.yml"
+    - "ansible-playbook -i servers servers_check.yml"
+  artifacts:
+    paths:
+    - "iac/terraform/terraform.tfstate"
+    untracked: true
+    when: "always"
+
+test_build:
+  stage: "test_build"
+  script:
+    - "echo BUILD DB"
+    - "docker build -t $CI_REGISTRY_IMAGE_DB -f Dockerfile_db ."
+    - "docker tag $CI_REGISTRY_IMAGE_DB registry.git.lab/cisco-devops/net_inventory_iac/$CI_REGISTRY_IMAGE_DB:$CI_COMMIT_REF_SLUG"
+    - "echo BUILD BACKEND"
+    - "docker build -t $CI_REGISTRY_IMAGE_BACKEND -f Dockerfile_backend ."
+    - "docker tag $CI_REGISTRY_IMAGE_BACKEND registry.git.lab/cisco-devops/net_inventory_iac/$CI_REGISTRY_IMAGE_BACKEND:$CI_COMMIT_REF_SLUG"
+    - "echo BUILD FRONTEND"
+    - "docker build -t $CI_REGISTRY_IMAGE_FRONTEND -f Dockerfile_frontend ."
+    - "docker tag $CI_REGISTRY_IMAGE_FRONTEND registry.git.lab/cisco-devops/net_inventory_iac/$CI_REGISTRY_IMAGE_FRONTEND:$CI_COMMIT_REF_SLUG"
+    - "docker push registry.git.lab/cisco-devops/net_inventory_iac/$CI_REGISTRY_IMAGE_DB:$CI_COMMIT_REF_SLUG"
+    - "docker push registry.git.lab/cisco-devops/net_inventory_iac/$CI_REGISTRY_IMAGE_BACKEND:$CI_COMMIT_REF_SLUG"
+    - "docker push registry.git.lab/cisco-devops/net_inventory_iac/$CI_REGISTRY_IMAGE_FRONTEND:$CI_COMMIT_REF_SLUG"
+
+test_deploy:
+  stage: "test_deploy"
+  script:
+    - >-
+        ssh -tt student@test_k8s1
+        "export SECRET_KEY=$SECRET_KEY && export SQLALCHEMY_DATABASE_URI=$SQLALCHEMY_DATABASE_URI && 
+         export POSTGRES_DB=$POSTGRES_DB && export POSTGRES_USER=$POSTGRES_USER && 
+         export POSTGRES_PASSWORD=$POSTGRES_PASSWORD && 
+         rm -rf ./net_inventory || true && git clone https://git.lab/cisco-devops/net_inventory.git/ && cd ./net_inventory &&
+         docker-compose stop || true && docker-compose rm -f || true && docker-compose up -d"
+    - "echo PING TEST"
+    - ssh -tt student@test_k8s3 "ping -w 10 test_k8s1"
+    - "echo CURL TEST"
+    - ssh -tt student@test_k8s3 'curl -m 2 -f -s -o /dev/null -w "%{http_code}" http://test_k8s1:5000/views/inventory/devices'
+    - "echo CURL TEST"
+    - ssh -tt student@test_k8s3 'curl -m 2 -f -s -o /dev/null -w "%{http_code}" http://test_k8s1:5001/api/v1/inventory/devices'
+
+test_cleanup:
+  stage: "test_cleanup"
+  script:
+    - "cd iac/terraform/"
+    - "terraform destroy -auto-approve"
+  when: "always"
+
+
+build:
+  stage: "build"
+  script:
+    - "echo BUILD DB"
+    - "docker build -t $CI_REGISTRY_IMAGE_DB -f Dockerfile_db ."
+    - "docker tag $CI_REGISTRY_IMAGE_DB registry.git.lab/cisco-devops/net_inventory_iac/$CI_REGISTRY_IMAGE_DB:$CI_COMMIT_REF_SLUG"
+    - "echo BUILD BACKEND"
+    - "docker build -t $CI_REGISTRY_IMAGE_BACKEND -f Dockerfile_backend ."
+    - "docker tag $CI_REGISTRY_IMAGE_BACKEND registry.git.lab/cisco-devops/net_inventory_iac/$CI_REGISTRY_IMAGE_BACKEND:$CI_COMMIT_REF_SLUG"
+    - "echo BUILD FRONTEND"
+    - "docker build -t $CI_REGISTRY_IMAGE_FRONTEND -f Dockerfile_frontend ."
+    - "docker tag $CI_REGISTRY_IMAGE_FRONTEND registry.git.lab/cisco-devops/net_inventory_iac/$CI_REGISTRY_IMAGE_FRONTEND:$CI_COMMIT_REF_SLUG"
+    - "docker push registry.git.lab/cisco-devops/net_inventory_iac/$CI_REGISTRY_IMAGE_DB:$CI_COMMIT_REF_SLUG"
+    - "docker push registry.git.lab/cisco-devops/net_inventory_iac/$CI_REGISTRY_IMAGE_BACKEND:$CI_COMMIT_REF_SLUG"
+    - "docker push registry.git.lab/cisco-devops/net_inventory_iac/$CI_REGISTRY_IMAGE_FRONTEND:$CI_COMMIT_REF_SLUG"
+  only:
+    - "master"
+
+deploy:
+  stage: "deploy"
+  script:
+    - >-
+        ssh -tt student@k8s1
+        "export SECRET_KEY=$SECRET_KEY && export SQLALCHEMY_DATABASE_URI=$SQLALCHEMY_DATABASE_URI && 
+         export POSTGRES_DB=$POSTGRES_DB && export POSTGRES_USER=$POSTGRES_USER && 
+         export POSTGRES_PASSWORD=$POSTGRES_PASSWORD && 
+         rm -rf ./net_inventory || true && git clone https://git.lab/cisco-devops/net_inventory.git/ && cd ./net_inventory &&
+         docker-compose stop || true && docker-compose rm -f || true && docker-compose up -d"
+    - "echo PING TEST"
+    - ssh -tt student@k8s3 "ping -w 10 k8s1"
+    - "echo CURL TEST"
+    - ssh -tt student@k8s3 'curl -m 2 -f -s -o /dev/null -w "%{http_code}" http://k8s1:5000/views/inventory/devices'
+    - "echo CURL TEST"
+    - ssh -tt student@k8s3 'curl -m 2 -f -s -o /dev/null -w "%{http_code}" http://k8s1:5001/api/v1/inventory/devices'
+  only:
+    - "master"
+
