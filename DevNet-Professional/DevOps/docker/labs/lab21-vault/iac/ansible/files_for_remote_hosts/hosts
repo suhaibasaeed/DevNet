@@ -1,0 +1,41 @@
+127.0.0.1	localhost
+127.0.1.1	student-virtual-machine
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+127.0.0.1	javadl-esd-secure.oracle.com
+127.0.0.1	accounts.google.com
+127.0.0.1	clients2.google.com
+127.0.0.1	clients4.google.com
+127.0.0.1	clientservices.googleapis.com
+127.0.0.1	dl.google.com
+127.0.0.1	redirector.gvt1.com
+127.0.0.1	tools.google.com
+127.0.0.1	update.googleapis.com
+127.0.0.1	www.googleapis.com
+
+
+127.0.0.1 student-vm
+127.0.0.1 index.docker.io
+127.0.0.1 docker.io
+#192.168.10.20 registry-1.docker.io
+192.168.10.20  gitlab
+192.168.10.20  git.lab
+192.168.10.20  registry.git.lab
+192.168.10.21  kubernetes.lab
+192.168.10.21  kube.lab
+192.168.10.21  k8s1
+192.168.10.22  k8s2
+192.168.10.23  k8s3
+192.168.10.101  csr1kv1
+192.168.10.102  csr1kv2
+192.168.10.103  csr1kv3
+192.168.10.51  asa1
+192.168.10.70  vsphere
+10.99.0.21 test_k8s1
+10.99.0.22 test_k8s2
+10.99.0.23 test_k8s3

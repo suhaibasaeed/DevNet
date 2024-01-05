@@ -1,0 +1,22 @@
+#jinja2: lstrip_blocks: True
+{% if interfaces_config %}
+  {% for interface, config in interfaces_config.items() %}
+    {% set ip_addr = config["ip_address"] %}
+    {% set ip_cidr = ip_addr["ip"] ~ "/" ~ ip_addr["mask"] %}
+interface {{ interface }}
+ ip address {{ ip_addr["ip"] }} {{ ip_cidr | ipaddr("netmask") }}
+ no shutdown
+  {% endfor %}
+{% endif %}
+
+{% if bgp_config %}
+router bgp {{ bgp_config["local_as"] }}
+  {% for network in bgp_config["advertised_networks"] %}
+    {% set ip_cidr = network["ip"] ~ "/" ~ network["mask"] %}
+ network {{ network["ip"] }} mask {{ ip_cidr | ipaddr("netmask") }}
+  {% endfor %}
+  {% for neighbor in bgp_config["neighbors"] %}
+ neighbor {{ neighbor["ip"] }} remote-as {{ neighbor["remote_as"] }}
+  {% endfor %}
+{% endif %}
+

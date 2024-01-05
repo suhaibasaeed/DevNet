@@ -1,0 +1,15 @@
+interface GigabitEthernet1
+ ip address 10.10.2.1 255.255.255.0
+ no shutdown
+interface GigabitEthernet2
+ ip address 172.16.100.9 255.255.255.252
+ no shutdown
+interface GigabitEthernet3
+ ip address 172.16.100.6 255.255.255.252
+ no shutdown
+
+router bgp 65002
+ network 10.10.2.0 mask 255.255.255.0
+ neighbor 172.16.100.5 remote-as 65001
+ neighbor 172.16.100.10 remote-as 65003
+
