@@ -1,0 +1,50 @@
+# API location core version 1
+apiVersion: v1 
+kind: Service
+metadata:
+  # name of the service
+  name: my-nginx-svc 
+  labels: 
+    app: nginx
+# Describe specifications for the service
+spec:
+  # Expose service externally using cloud provider's load balancer
+  type: LoadBalancer
+  ports:
+  # Port that the service should serve on
+  - port: 80
+  # Define how service should select pods to route traffic to
+  selector:
+  # Label that the service will use to match pods
+    app: nginx
+---
+# API location apps version 1
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  # Name of the deployment
+  name: my-nginx
+  labels:
+    app: nginx
+spec: 
+  # Number of pods to maintain
+  replicas: 3
+  # How deployment picks out which pods to manage
+  selector:
+    # Find pods with below labels
+    matchLabels:
+      app: nginx
+  # Pod template
+  template: 
+    # Labels to add to pods created by this template
+    metadata:
+      labels:
+        app: nginx
+    # Describe container that will be created for this pod
+    spec:
+      containers:
+      # Name of container, image to use and port to expose on container
+      - name: nginx
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
