@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: coffee-service
+  labels:
+    app: coffee-service
+  annotations:
+    # Tell DigitalOcean to create LB called coffee-service
+    kubernetes.digitalocean.com/load-balancer-id: "coffee-service"
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  # Which pods to LB
+  selector:
+    app: nccoffee
+  sessionAffinity: None

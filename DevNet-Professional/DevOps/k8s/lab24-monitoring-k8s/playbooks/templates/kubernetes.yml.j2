@@ -1,0 +1,49 @@
+# Module: kubernetes
+# Docs: https://www.elastic.co/guide/en/beats/metricbeat/7.4/metricbeat-module-kubernetes.html
+
+# Node metrics, from kubelet:
+- module: kubernetes
+  metricsets:
+    - container
+    - node
+    - pod
+    - system
+    - volume
+  period: 10s
+  hosts: ["https://k8s1:10250","https://k8s2:10250","https://k8s3:10250"]
+  bearer_token_file: /home/student/.kube_bearer/token
+  ssl.verification_mode: none
+  add_metadata: true
+  kube_config: ~/.kube/config
+# Controller Metrics, from ControllerManager
+- module: kubernetes
+  metricsets:
+    - controllermanager
+  period: 10s
+  hosts: ["http://k8s1:10252","http://k8s2:10252","http://k8s3:10252"]
+  bearer_token_file: /home/student/.kube_bearer/token
+  ssl.verification_mode: none
+  #username: "user"
+  #password: "secret"
+
+  # Enriching parameters:
+  #add_metadata: true
+  #labels.dedot: true
+  #annotations.dedot: true
+  # When used outside the cluster:
+  #host: kube.lab
+  #kube_config: ~/.kube/config
+
+# State metrics from kube-state-metrics service:
+- module: kubernetes
+  metricsets:
+    - state_node
+    - state_deployment
+    - state_replicaset
+    - state_statefulset
+    - state_pod
+    - state_container
+    - state_cronjob
+  period: 10s
+  hosts: ["localhost:30880"]
+  add_metadata: true

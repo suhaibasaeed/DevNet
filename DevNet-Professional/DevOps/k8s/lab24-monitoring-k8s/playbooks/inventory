@@ -1,0 +1,8 @@
+[k8servers]
+k8s1
+k8s2
+k8s3
+
+[k8servers:vars]
+ansible_user=student
+ansible_python_interpreter=/usr/bin/python3

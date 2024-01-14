@@ -1,0 +1,62 @@
+---
+- name: "INSTALL METRICBEAT FROM LOCAL FILE WITH APT"
+  hosts: k8s1
+  gather_facts: no
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: "COPY METRICBEAT FROM SERVER TO HOST"
+      shell: "scp /home/student/metricbeat-7.4.2-amd64.deb student@{{ inventory_hostname }}:/tmp/metricbeat-7.4.2-amd64.deb"
+      delegate_to: localhost
+
+    - name: "GET FILES IN TMP FOLDER"
+      find:
+        paths: /tmp
+        patterns: "metricbeat-7.4.2-amd64.deb"
+      register: find_file
+
+    - name: "VERIFY METRICBEAT IS ON SERVER"
+      assert:
+        that: "find_file['matched'] == 1"
+        fail_msg: "Metricbeat file is not on the server, please install with ~/scripts/copy_metricbeat.sh"
+        success_msg: "Metricbeat file present, continuing"
+
+    - name: "INSTALL METRICBEAT FROM DEB FILE"
+      apt:
+        deb: /tmp/metricbeat-7.4.2-amd64.deb
+
+    - name: "GET STATE OF METRICBEAT"
+      systemd:
+        name: metricbeat
+      register: metricbeat_status
+
+    - name: "ASSERT METRICBEAT INSTALLED"
+      assert:
+        that: "'lightweight' in metricbeat_status['status']['Description']"
+
+    - name: "TEMPLATE METRICBEAT YAML FILE TO K8S HOST"
+      template:
+        src: metricbeat.yml.j2
+        dest: /etc/metricbeat/metricbeat.yml
+        owner: root
+        group: root
+    
+    - name: "TEMPLATE KUBERNETES YAML FILE TO K8S HOST"
+      template:
+        src: kubernetes.yml.j2
+        dest: /etc/metricbeat/modules.d/kubernetes.yml
+        owner: root
+        group: root
+
+    - name: "RESTART THE METRICBEAT SERVICE"
+      systemd:
+        name: metricbeat
+        state: restarted
+      register: metricbeat_restart
+
+    - name: "VERIFY RESTARTED"
+      assert:
+        that: "'active' in metricbeat_restart['status']['ActiveState']"
+        fail_msg: "Metricbeat failed to reach active state, verify manually"
+        success_msg: "Metricbeat successfully restarted"
+...

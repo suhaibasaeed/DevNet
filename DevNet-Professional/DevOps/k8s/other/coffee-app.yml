@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coffee-deployment
+  labels:
+    app: nccoffee
+spec:
+  # How many pods to maintain
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nccoffee
+  template:
+    metadata:
+      labels:
+        app: nccoffee
+    spec:
+      containers:
+      - name: static-site
+        image: thenetworkchuck/nccoffee:pourover
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80

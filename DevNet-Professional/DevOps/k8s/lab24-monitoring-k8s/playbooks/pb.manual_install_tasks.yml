@@ -1,0 +1,33 @@
+---
+- name: "PLAY 1: INSTALL FILEBEAT FROM LOCAL FILE WITH APT"
+  hosts: k8servers
+  gather_facts: no
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: "GET FILES IN TMP FOLDER"
+      find:
+        paths: /tmp
+        patterns: "filebeat-7.4.2-amd64.deb"
+      register: find_file
+
+    - name: "VERIFY FILEBEAT IS ON SERVER"
+      assert:
+        that: "find_file['matched'] == 1"
+        fail_msg: "Filebeat file is not on the server, please install with ~/scripts/copy_filebeat.sh"
+        success_msg: "Filebeat file present, continuing"
+
+    - name: "INSTALL FILEBEAT FROM DEB FILE"
+      apt:
+        deb: /tmp/filebeat-7.4.2-amd64.deb
+
+    - name: "GET STATE OF FILEBEAT"
+      systemd:
+        name: filebeat
+      register: filebeat_status
+
+    - name: "ASSERT FILEBEAT INSTALLED"
+      assert:
+        that: "'Elasticsearch' in filebeat_status['status']['Description']"
+...
+
