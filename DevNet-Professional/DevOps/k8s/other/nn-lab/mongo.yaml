@@ -1,0 +1,60 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-deployment
+# Deployment specific config
+spec:
+  replicas: 1
+  # Identifies the pods controlled by this deployment
+  selector:
+    matchLabels:
+      app: mongo
+  # Blueprint for the pods i.e. pod config goes here - has own metadata and spec
+  template:
+    metadata:
+      # labels is REQUIRED field here but optional for Deployment
+      labels:
+        app: mongo
+    spec:
+      containers:
+        # Name of container
+        - name: mongodb
+          image: mongo:5.0
+          ports:
+            - containerPort: 27017
+          # Env vars for DB username and password
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                # Get from secret yaml file
+                secretKeyRef:
+                  # Name of secret from metadata
+                  name: mongo-secret
+                  # Key name from data section of secret yaml file
+                  key: mongo-user
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                # Get from secret yaml file
+                secretKeyRef:
+                  # Name of secret from metadata
+                  name: mongo-secret
+                  # Key name from data section of secret yaml file
+                  key: mongo-password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-service
+spec:
+  # Default service type - 
+  type: ClusterIP
+  # Select pods to forward traffic to via this label
+  selector:
+    app: mongo
+  ports:
+    - protocol: TCP
+      # Service port
+      port: 27017
+      # Container port to forward traffic to
+      targetPort: 27017

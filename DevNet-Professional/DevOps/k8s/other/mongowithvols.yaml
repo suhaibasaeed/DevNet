@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-deployment-with-vols
+# Deployment specific config
+spec:
+  replicas: 1
+  # Identifies the pods controlled by this deployment
+  selector:
+    matchLabels:
+      app: mongo
+  # Blueprint for the pods i.e. pod config goes here - has own metadata and spec
+  template:
+    metadata:
+      # labels is REQUIRED field here but optional for Deployment
+      labels:
+        app: mongo
+    spec:
+      containers:
+        # Name of container
+        - name: mongodb
+          image: mongo:5.0
+          ports:
+            - containerPort: 27017
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: mongo-user
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: mongo-password
+          volumeMounts:
+            - name: mongo-persistent-storage
+              mountPath: /data/db
+      volumes:
+        - name: mongo-persistent-storage
+          persistentVolumeClaim:
+            claimName: mongo-pvc

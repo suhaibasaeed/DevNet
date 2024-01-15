@@ -1,0 +1,68 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-deployment
+# Deployment specific config
+spec:
+  replicas: 1
+  # Identifies the pods controlled by this deployment
+  selector:
+    matchLabels:
+      app: webapp
+  # Blueprint for the pods i.e. pod config goes here - has own metadata and spec
+  template:
+    metadata:
+      # labels is REQUIRED field here but optional for Deployment
+      labels:
+        app: webapp
+    spec:
+      containers:
+        # Name of container
+        - name: webapp
+          image: nanajanashia/k8s-demo-app:v1.0
+          ports:
+            - containerPort: 3000
+          env:
+            - name: USER_NAME
+              valueFrom:
+                # Get from secret yaml file
+                secretKeyRef:
+                  # Name of secret from metadata
+                  name: mongo-secret
+                  # Key name from data section of secret yaml file
+                  key: mongo-user
+            - name: USER_PWD
+              valueFrom:
+                # Get from secret yaml file
+                secretKeyRef:
+                  # Name of secret from metadata
+                  name: mongo-secret
+                  # Key name from data section of secret yaml file
+                  key: mongo-password
+            - name: DB_URL
+              valueFrom:
+                # Get from config map yaml file
+                configMapKeyRef:
+                  # Name of config map from metadata
+                  name: mongo-config
+                  key: mongo-url
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp-service
+spec:
+  # Default service type - 
+  type: NodePort
+  # Select pods to forward traffic to via this label
+  selector:
+    app: webapp
+  ports:
+    - protocol: TCP
+      # Service port
+      port: 3000
+      # Container port to forward traffic to
+      targetPort: 3000
+      # Node port
+      nodePort: 30100
