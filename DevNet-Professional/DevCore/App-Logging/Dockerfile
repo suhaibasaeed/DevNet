@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:24.10
 
 MAINTAINER Knox Hutchinson "khutchinson@cbtnuggets.com"
 
